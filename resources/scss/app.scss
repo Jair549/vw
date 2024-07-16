@@ -5,3 +5,110 @@
     padding: 0;
     margin: 0;
 }
+
+#main-nav{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 6rem;
+    display: flex;
+    align-items: flex-start;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    background-color: transparent!important;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    z-index: 999;
+
+    .navbar-brand{
+
+        img{
+            width: 256px;
+        }
+    }
+
+    .navbar-nav{
+        .nav-item{
+            .nav-link{
+                color: #004666;
+            }
+        }
+    }
+}
+
+.header-page{
+    .banner-header{
+        height: 70vh;
+        position: relative;
+
+        .content-header{
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                object-position: 40% 70%;
+            }
+        }
+    }
+
+    .container-header{
+        position: relative;
+        z-index: 1;
+
+        .bg-description-header{
+            background: #0082a0;
+            width: 50%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+
+            &:before{
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                background: rgb(0,99,132);
+                background: linear-gradient(315deg, rgba(0,99,132,0.8469827586206897) 0%, rgba(254,254,254,0) 100%);
+            }
+        }
+
+        .content-description-header{
+            padding: 50px 0;
+            padding-left: 10px;
+        }
+    }
+}
+
+.title-header{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    color: #fff;
+    max-width: 445px;
+    margin-bottom: 1.5rem;
+}
+
+.btn.btn-page{
+    background: rgb(255 255 255);
+    padding: .5rem 2rem;
+    border-radius: 50px;
+    font-size: 1.125rem;
+    line-height: 1.4rem;
+    color: #004666;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn.btn-page:hover {
+    transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1.05) scaleY(1.05);
+}
