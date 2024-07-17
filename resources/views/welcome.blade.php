@@ -7,7 +7,7 @@
 
     <title>VW</title>
 
-    @vite('resources/scss/app.scss')
+    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 
 </head>
 
@@ -16,6 +16,8 @@
     @include('sections.nav')
 
     @include('sections.header')
+
+    @include('sections.consortium')
 
     @vite('resources/js/app.js')
 </body>

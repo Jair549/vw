@@ -6,6 +6,10 @@
     margin: 0;
 }
 
+a{
+    text-decoration: none;
+}
+
 #main-nav{
     position: fixed;
     top: 0;
@@ -111,4 +115,98 @@
 
 .btn.btn-page:hover {
     transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1.05) scaleY(1.05);
+}
+
+.title-section{
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 300;
+    text-align: center;
+}
+
+.section-consortium{
+    padding-top: 7rem;
+    
+    .title-section{
+        padding-left: .75rem;
+        padding-right: .75rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+.content-carousel{
+    .header-carousel-cars{
+        padding: 1rem;
+        background: #f3f4f6;
+        height: 8rem;
+        margin-bottom: 5rem;
+        margin-top: 1.25rem;
+        z-index: 20;
+        position: relative;
+
+        .title-car{
+            color: #4c5356;
+            font-weight: 700;
+            font-size: 23px;
+        }
+
+        .text-desciprion-car{
+            color: #004666;
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            font-weight: 700;
+        }
+
+        .box-image-car{
+            position: absolute;
+            right: -15px;
+            bottom: -5rem;
+            width: 18rem;
+            height: 10rem;
+
+            img{
+                max-width: 100%;
+            }
+        }
+    }
+    .button-simulator{
+        display: block;
+        font-size: 1.125rem;
+        border: 2px solid #004666;
+        border-radius: 50px;
+        padding: .5rem 2rem;
+        width: fit-content;
+        font-weight: 700;
+        color: #004666;
+        margin-top: -25px;
+    }
+}
+
+.carousel-cars{
+    .item-carousel{
+        padding-right: 20px;
+    }
+}
+
+.slick-car-arrow{
+    background: #004666;
+    padding: 0;
+    border-radius: 50px;
+    padding: .5rem;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    z-index: 2;
+
+    &.btn-right{
+        right: 0;
+    }
+
+    &:focus, &:active{
+        background: #004666;
+    }
+
+    svg{
+        width: 2rem;
+    }
 }
