@@ -17,7 +17,9 @@
 
     @include('sections.header')
 
-    @include('sections.consortium')
+    @include('sections.carousel')
+
+    @include('sections.whatConsortium')
 
     @vite('resources/js/app.js')
 </body>
