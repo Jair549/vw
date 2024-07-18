@@ -325,3 +325,37 @@ a{
         }
     }
 }
+
+.nationalVW{
+    margin-top: 5rem;
+
+    .title-strong{
+        margin-bottom: 5rem;
+    }
+
+    .align-box-national{
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        margin: auto;
+        max-width: 64rem;
+
+        figure{
+            height: 20rem;
+
+            img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .box-description-nationalVW{
+            font-size: 1.5rem;
+            line-height: 2rem;
+            padding-left: 4rem;
+            padding-right: 4rem;
+        }
+    }
+}

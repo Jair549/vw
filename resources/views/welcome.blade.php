@@ -23,6 +23,8 @@
 
     @include('sections.consortiumAdvantages')
 
+    @include('sections.nationalVW')
+
     @vite('resources/js/app.js')
 </body>
 
