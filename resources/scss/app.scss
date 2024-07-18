@@ -272,3 +272,56 @@ a{
         padding-left: 1.5rem;
     }
 }
+
+.consortiumAdvantages{
+    padding-top: 7rem;
+}
+
+.title-strong{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: #000;
+    text-align: center;
+}
+
+.box-card-advantages{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-top: 5rem;
+    gap: 30px;
+}
+
+.item-advantages{
+    background: #f3f4f6cc;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    svg{
+        width: 48px;
+        height: 48px;
+        stroke-width: 1;
+        margin: auto;
+        display: block;
+    }
+    
+    .title-advantages{
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .description-advantages{
+        font-size: 15px;
+        font-weight: 400;
+        text-align: center;
+
+        p{
+            margin: 0;
+        }
+    }
+}

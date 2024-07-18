@@ -21,6 +21,8 @@
 
     @include('sections.whatConsortium')
 
+    @include('sections.consortiumAdvantages')
+
     @vite('resources/js/app.js')
 </body>
 
