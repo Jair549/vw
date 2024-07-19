@@ -27,6 +27,8 @@
 
     @include('sections.callAction')
 
+    @include('sections.faq')
+
     @vite('resources/js/app.js')
 </body>
 

@@ -417,3 +417,73 @@ a{
         }
     }
 }
+
+.faq{
+    padding-top: 5rem;
+
+    .title-strong{
+        margin-bottom: 2rem;
+    }
+
+    .sub-title{
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        text-align: center;
+        font-weight: 400;
+        margin-bottom: 4rem;
+    }
+
+    .accordion{
+        max-width: 64rem;
+        margin: auto;
+        border-radius: 0;
+
+        .accordion-item{
+            border: none;
+            border-radius: 0!important;
+            margin-bottom: 2rem;
+
+            &:last-of-type{
+                .accordion-header{
+                    .accordion-button {
+                        &.collapsed{
+                            border-radius: 0!important;
+                        } 
+                    }
+                }
+            }
+        }
+
+        .accordion-header{
+            .accordion-button{
+                background: transparent;
+                border: none;
+                font-size: 1.25rem;
+                line-height: 1.75rem;
+                font-weight: 700;
+                color: #000;
+                padding: .5rem 1rem;
+                border-bottom: 2px solid #a8adb3;
+
+                &:focus{
+                    box-shadow: none;
+                    box-shadow: none!important;
+                }
+            }
+        }
+
+        .accordion-body{
+            border: none!important;
+            padding-bottom: 0;
+
+            p{
+                margin-top: 1.25em;
+                margin-bottom: 0;
+                color: #374151;
+                padding-left: .75rem;
+                line-height: 30px;
+                font-size: 15px;
+            }
+        }
+    }
+}
