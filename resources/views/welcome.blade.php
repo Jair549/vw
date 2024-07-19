@@ -25,6 +25,8 @@
 
     @include('sections.nationalVW')
 
+    @include('sections.callAction')
+
     @vite('resources/js/app.js')
 </body>
 
