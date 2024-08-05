@@ -76,6 +76,10 @@ class InitialSeeder extends Seeder
                                 "name" => "button_link",
                                 "type" => "url",
                             ],
+                            [
+                                "name" => "image",
+                                "type" => "file",
+                            ],
 
                         ]
                     ]
@@ -87,6 +91,7 @@ class InitialSeeder extends Seeder
             $payload = [
                 "name" => $section["name"],
                 "columns" => json_encode($section["columns"]),
+                "slug" => \App\Models\Section::uniqSlug($section["name"]),
             ];
             \App\Models\Section::updateOrCreate($payload);
         }
