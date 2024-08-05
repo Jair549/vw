@@ -15,6 +15,12 @@ class Section extends Model
         'surname',
         'position',
         'fields',
-        'columns'
+        'columns',
+        'slug',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

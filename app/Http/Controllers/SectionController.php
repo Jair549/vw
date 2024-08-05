@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SectionRequest;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
@@ -19,10 +18,10 @@ class SectionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Section $section)
     {
-        $sections = Section::all();
-        return view('panel.carros.create', compact('sections'));
+        // $sections = Section::all();
+        return view('panel.carros.create', compact('section'));
     }
 
     /**
@@ -47,7 +46,7 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        //
+        return view('panel.carros.show', compact('section'));
     }
 
     /**
@@ -55,13 +54,13 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-        //
+        return view('panel.carros.edit', compact('section'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(SectionRequest $request, Section $section)
+    public function update(Request $request, Section $section)
     {
         //
     }
