@@ -58,7 +58,7 @@ class SectionController extends Controller
         $section->fields =  json_encode($payload);
         $section->save();
 
-        return redirect()->route('sections.create');
+        return redirect()->route('sections.create', $section->slug);
     }
 
     /**
