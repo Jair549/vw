@@ -7,7 +7,7 @@
 
 <h3>Formulario de cadastro da seção</h3>
 
-<form action="{{ route('sections.store') }}" method="post">
+<form action="{{ route('sections.store') }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('put')
 

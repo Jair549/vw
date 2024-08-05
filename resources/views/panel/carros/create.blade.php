@@ -5,7 +5,7 @@
 
 <h3>Formulario de cadastro da seção</h3>
 
-<form action="{{ route('sections.store') }}" method="post">
+<form action="{{ route('sections.store', $section->slug) }}" method="post" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="section_id" value="{{ $section->id }}">
     

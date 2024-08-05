@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Section;
 use Illuminate\Http\Request;
+use App\Services\FileService;
+use App\Repositories\FileRepository;
 
 class SectionController extends Controller
 {
+    protected $fileService;
+    protected $fileRepository;
+
+    public function __construct(FileService $fileService, FileRepository $fileRepository)
+    {
+        $this->fileService = $fileService;
+        $this->fileRepository = $fileRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -29,6 +40,15 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
+        //Verificar se existe image, e salvar a imagem na pasta e retornar o path
+        if ($request->hasFile('image')) {
+            $path = $this->fileService->store($request->file('image'));
+            $request['files'] = [
+                'id' => uniqid(),
+                'path' => $path,
+            ];
+        }
+        
         $sectionId = $request['section_id'];
         unset($request['section_id']);
         $payload = $request->all();

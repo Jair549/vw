@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\Section;
 
-class SectionRepository
+class FileRepository
 {
     public function show($sectionId, $fileId)
     {
