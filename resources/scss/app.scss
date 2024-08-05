@@ -487,3 +487,142 @@ a{
         }
     }
 }
+
+.footer-page{
+    margin: auto;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    max-width: 72rem;
+    border-top: 2px solid #004666;
+    padding: 1rem;
+
+    .header-footer{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.box-item-footer{
+    .accordion{
+        width: fit-content;
+    }
+
+    .accordion-item{
+        border: none;
+    }
+
+    .accordion-button{
+        padding: 0;
+        border: 0;
+        background: transparent;
+        border: none;
+        margin-bottom: .5rem;
+        color: #6b7280;
+        font-weight: 600;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        svg{
+            width: 20px;
+        }
+
+        &:not(.collapsed){
+            box-shadow: none;
+        }
+
+        &:focus{
+            box-shadow: none;
+        }
+
+        &:after{
+            display: none;
+        }
+    }
+
+    .accordion-item{
+
+        .accordion-body{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .nav-footer{
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            li{
+                display: block;
+
+                a{
+                    display: block;
+                    color: #004666;
+                    font-size: .875rem;
+                    line-height: 1.25rem;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+.logo-footer{
+    text-align: center;
+    margin-top: 3rem;
+
+    a{
+        max-width: fit-content;
+
+        img{
+            max-width: 224px;
+        }
+    }
+}
+
+.description-footer{
+    text-align: center;
+    margin-top: 3rem;
+
+    p{
+        color: #4c5356;
+        font-size: 1rem;
+        line-height: 1.5rem;    
+        margin-bottom: 0;
+
+        a{
+            color: #4c5356;
+        }
+    }
+
+    .copy{
+        display: block;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        color: #4c5356;
+    }
+}
+
+.box-info-footer{
+    font-size: .875rem;
+    line-height: 1.25rem;
+    padding-top: 4rem;
+    border-top: 2px solid #e5e7eb;
+    color: #8c8484;
+
+    p{
+        margin-bottom: 1rem;
+    }
+
+    .unic-paragraph{
+        .paragraph-border{
+            border-left: 2px solid #e5e7eb;
+            padding-left: .5rem;
+            margin-bottom: .5rem;
+        }
+    }
+}

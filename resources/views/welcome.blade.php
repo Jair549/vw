@@ -29,6 +29,8 @@
 
     @include('sections.faq')
 
+    @include('sections.footer')
+
     @vite('resources/js/app.js')
 </body>
 
