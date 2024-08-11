@@ -46,6 +46,7 @@ class InitialSeeder extends Seeder
             ],
             [
                 "name" => "Carros",
+                "type" => "array",
                 "columns" => [
                     [
                         "name" => "title",
@@ -90,6 +91,7 @@ class InitialSeeder extends Seeder
         foreach ($sections as $section) {
             $payload = [
                 "name" => $section["name"],
+                "type" => $section["type"] ?? "object",
                 "columns" => json_encode($section["columns"]),
                 "slug" => \App\Models\Section::uniqSlug($section["name"]),
             ];

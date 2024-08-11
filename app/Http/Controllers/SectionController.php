@@ -40,6 +40,10 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
+        $section = Section::find($request->section_id);
+        unset($request['section_id']);
+        $fields = json_decode($section->fields, true);
+
         //Verificar se existe image, e salvar a imagem na pasta e retornar o path
         if ($request->hasFile('image')) {
             $path = $this->fileService->store($request->file('image'));
@@ -47,15 +51,21 @@ class SectionController extends Controller
                 'id' => uniqid(),
                 'path' => $path,
             ];
+            unset($request['image']);
         }
-        
-        $sectionId = $request['section_id'];
-        unset($request['section_id']);
         $payload = $request->all();
 
-        //buscar a seção
-        $section = Section::find($sectionId);
-        $section->fields =  json_encode($payload);
+        //Verificar se o tipo do campo é array ou objeto
+        if($section->type == 'array'){
+            $fields[] = [
+                'id' => uniqid(),
+                'fields' => $payload
+            ];
+        }else{
+            $fields = $payload;
+        }
+
+        $section->fields =  json_encode($fields);
         $section->save();
 
         return redirect()->route('sections.create', $section->slug);
@@ -77,12 +87,24 @@ class SectionController extends Controller
         return view('panel.carros.edit', compact('section'));
     }
 
+    public function editField(Section $section, $id)
+    {
+        return view('panel.carros.editField', compact('section', 'id'));
+    }
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Section $section)
     {
-        //
+        //Verificar se existe image, se sim, deletar a imagem antiga e salvar a nova imagem na pasta e retornar o path
+        // xdebug_break();
+    }
+
+    public function updateField(Request $request, Section $section, $id)
+    {
+        //Verificar se existe image, se sim, deletar a imagem antiga e salvar a nova imagem na pasta e retornar o path
+        xdebug_break();
     }
 
     /**
