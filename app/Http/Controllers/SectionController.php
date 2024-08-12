@@ -11,11 +11,13 @@ class SectionController extends Controller
 {
     protected $fileService;
     protected $fileRepository;
+    protected $sections;
 
-    public function __construct(FileService $fileService, FileRepository $fileRepository)
+    public function __construct(FileService $fileService, FileRepository $fileRepository, Section $sections)
     {
         $this->fileService = $fileService;
         $this->fileRepository = $fileRepository;
+        $this->sections = $sections;
     }
 
     /**
@@ -76,7 +78,8 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        return view('panel.sections.index', compact('section'));
+        $sections = $this->sections->all();
+        return view('panel.sections.index', compact('section', 'sections'));
     }
 
     /**
