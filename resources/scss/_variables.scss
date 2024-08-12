@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300&display=swap');
+
+$font-primary: Roboto, Arial, sans-serif;
+$font-secondary: Poppins, Arial, sans-serif;
+$menu-color: #f8f9fa;
+$black: #000;
+$white: #fff;
+$bluishGray: #47565d;
+$darkBluishGray: #263035;
+$blue: #00baf1;
+$darkBlue: #0b7d9f;
+
+// Body
+$body-bg: #f8fafc;
+:root{
+    --black: #000;
+    --white: #fff;
+    --green: #0b3b3c;
+    --gray-text: #e3e1df;
+    --bg-body:#ffffff;
+    --red-white: #ff8d7d;
+    --border-gray: #91ab9f;
+    --btn-hover-red: #ffaea3;
+    --light-red: #fbe8ea;
+    --color-description: rgba(51, 51, 51, 0.5);
+    --color-second-description: rgba(0, 0, 0, 0.4);
+    --color-text-plan: rgb(31, 31, 31);
+}
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;

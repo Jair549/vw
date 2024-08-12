@@ -76,7 +76,7 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        return view('panel.carros.show', compact('section'));
+        return view('panel.sections.index', compact('section'));
     }
 
     /**
@@ -104,7 +104,7 @@ class SectionController extends Controller
     public function updateField(Request $request, Section $section, $id)
     {
         //Verificar se existe image, se sim, deletar a imagem antiga e salvar a nova imagem na pasta e retornar o path
-        xdebug_break();
+        // xdebug_break();
     }
 
     /**
