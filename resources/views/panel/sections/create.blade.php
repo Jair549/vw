@@ -18,7 +18,7 @@
 
     <div class="card-body">
 
-        @include('panel.components.form')
+        @include('panel.components.form', ['update' => false])
     
     </div>
 </div>

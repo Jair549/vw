@@ -40,9 +40,8 @@ class SectionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Section $section)
     {
-        xdebug_break();
         $section = Section::find($request->section_id);
         unset($request['section_id']);
         $fields = json_decode($section->fields, true);
@@ -57,6 +56,7 @@ class SectionController extends Controller
         }
         $payload = $request->all();
         unset($payload['image']);
+        unset($payload['_token']);
 
         //Verificar se o tipo do campo é array ou objeto
         if($section->type == 'array'){
@@ -67,7 +67,7 @@ class SectionController extends Controller
         }else{
             $fields = $payload;
         }
-
+        
         $section->fields =  json_encode($fields);
         $section->save();
 
