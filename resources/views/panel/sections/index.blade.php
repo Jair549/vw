@@ -15,7 +15,6 @@
     <div class="card-body">
         @if($section->type == 'array')
             <!-- tabela -->
-             <h3>Tabela</h3>
              @include('panel.components.table')
         @else
             <!-- formulario -->
