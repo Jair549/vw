@@ -20,6 +20,7 @@ class InitialSeeder extends Seeder
                     [
                         "name" => "logo",
                         "type" => "file",
+                        "label" => "Logo",
                     ]
                 ]
             ],
@@ -29,18 +30,22 @@ class InitialSeeder extends Seeder
                     [
                         "name" => "banner",
                         "type" => "file",
+                        "label" => "Banner",
                     ],
                     [
                         "name" => "title",
                         "type" => "text",
+                        "label" => "Título",
                     ],
                     [
                         "name" => "button_text",
                         "type" => "text",
+                        "label" => "Texto do botão",
                     ],
                     [
                         "name" => "button_link",
                         "type" => "url",
+                        "label" => "Link do botão",
                     ],
                 ]
             ],
@@ -51,6 +56,7 @@ class InitialSeeder extends Seeder
                     [
                         "name" => "title",
                         "type" => "text",
+                        "label" => "Título",
                     ],
                     [
                         "name" => "carros",
@@ -59,27 +65,33 @@ class InitialSeeder extends Seeder
                             [
                                 "name" => "title",
                                 "type" => "text",
+                                "label" => "Título",
                             ],
                             [
                                 "name" => "subtitle",
                                 "type" => "text",
+                                "label" => "Subtítulo",
                             ],
                             [
                                 "name" => "price",
                                 "mask" => "currency",
                                 "type" => "text",
+                                "label" => "Preço",
                             ],
                             [
                                 "name" => "button_text",
                                 "type" => "text",
+                                "label" => "Texto do botão",
                             ],
                             [
                                 "name" => "button_link",
                                 "type" => "url",
+                                "label" => "Link do botão",
                             ],
                             [
                                 "name" => "image",
                                 "type" => "file",
+                                "label" => "Imagem",
                             ],
 
                         ]

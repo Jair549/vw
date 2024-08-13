@@ -33,8 +33,8 @@ class SectionController extends Controller
      */
     public function create(Section $section)
     {
-        // $sections = Section::all();
-        return view('panel.carros.create', compact('section'));
+        $sections = Section::all();
+        return view('panel.sections.create', compact('section', 'sections'));
     }
 
     /**
@@ -42,6 +42,7 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
+        xdebug_break();
         $section = Section::find($request->section_id);
         unset($request['section_id']);
         $fields = json_decode($section->fields, true);
@@ -53,9 +54,9 @@ class SectionController extends Controller
                 'id' => uniqid(),
                 'path' => $path,
             ];
-            unset($request['image']);
         }
         $payload = $request->all();
+        unset($payload['image']);
 
         //Verificar se o tipo do campo é array ou objeto
         if($section->type == 'array'){
