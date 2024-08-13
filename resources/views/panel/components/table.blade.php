@@ -46,7 +46,7 @@
                         @endforeach
 
                         <td class="actions text-center">
-                            <a href="#" class="link edit"><i class="fas fa-edit"></i></a>
+                            <a href="{{ route('sections.edit', $section->slug) }}" class="link edit"><i class="fas fa-edit"></i></a>
                             <a data-toggle="modal" data-target="#modalDelete-{{$item['id']}}" class="link delete"><i class="fas fa-trash-alt"></i></a>
 
                             <div id="modalDelete-{{$item['id']}}" class="modal fade modal-warning" role="dialog">

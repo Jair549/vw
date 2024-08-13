@@ -34,7 +34,8 @@ class SectionController extends Controller
     public function create(Section $section)
     {
         $sections = Section::all();
-        return view('panel.sections.create', compact('section', 'sections'));
+        $update = false;
+        return view('panel.sections.create', compact('section', 'sections', 'update'));
     }
 
     /**
@@ -88,7 +89,9 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-        return view('panel.carros.edit', compact('section'));
+        $sections = Section::all();
+        $update = true;
+        return view('panel.sections.create', compact('section', 'sections', 'update'));
     }
 
     public function editField(Section $section, $id)
@@ -102,7 +105,6 @@ class SectionController extends Controller
     public function update(Request $request, Section $section)
     {
         //Verificar se existe image, se sim, deletar a imagem antiga e salvar a nova imagem na pasta e retornar o path
-        // xdebug_break();
     }
 
     public function updateField(Request $request, Section $section, $id)
