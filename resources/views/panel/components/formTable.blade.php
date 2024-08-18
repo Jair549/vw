@@ -56,7 +56,7 @@
             
             <div class="form-group">
                 <label for="{{ $column->name }}">{{ $column->label }}</label>
-                <input class="form-control" type="{{ $column->type}}" name="{{ $column->name }}" id="{{ $column->name }}" {{ isset($column->required) && $update ? 'required' : '' }}>
+                <input class="form-control" type="{{ $column->type}}" name="{{ $column->name }}" id="{{ $column->name }}" value="{{ old($column->name, $update ? $fields[0]['fields'][$column->name] : '') }}" {{ isset($column->required) && $update ? 'required' : '' }}>
             </div>
         @elseif($column->type == 'url')
             <div class="form-group

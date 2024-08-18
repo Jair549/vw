@@ -18,15 +18,11 @@
             @foreach($column->fields as $field)
                 <div class="container-items">
                     @if($field->type == 'file')
-                        <div class="form-group">
-                            <label for="{{ $field->name }}">{{ $field->label }}</label>
-                            <input class="form-control" type="{{ $field->type}}" name="{{ $field->name }}" id="{{ $field->name }}" {{ isset($field->required) && $update ? 'required' : '' }}>
-                        </div>
 
                         <div class="form-group">
                             <div class="custom-input-file">
-                                <label for="logo">Imagem</label>
-                                <input type="file" name="image" accept="image/*" class="form-control" onchange="showTempFile(event, 'custom-input-file', 'container-temp-file')">
+                                <label for="logo">{{ $field->label }}</label>
+                                <input type="{{ $field->type}}" name="{{ $field->name }}" accept="image/*" class="form-control" onchange="showTempFile(event, 'custom-input-file', 'container-temp-file')">
                                 <div class="container-temp-file">
                                     <button type="button" class="btn btn-toggle-file" onclick="toggleFile(event)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
