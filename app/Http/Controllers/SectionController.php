@@ -72,6 +72,7 @@ class SectionController extends Controller
         $section->fields =  json_encode($fields);
         $section->save();
 
+        session()->flash('success', 'Cadastro realizado com sucesso!');
         return redirect()->route('sections.create', $section->slug);
     }
 
@@ -80,8 +81,9 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
+        $update = false;
         $sections = $this->sections->all();
-        return view('panel.sections.index', compact('section', 'sections'));
+        return view('panel.sections.index', compact('section', 'sections', 'update'));
     }
 
     /**

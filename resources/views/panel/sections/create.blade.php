@@ -23,9 +23,3 @@
     </div>
 </div>
 @endsection
-
-@section('Js')
-
-@include('panel.partials.fileScripts')
-
-@endsection
