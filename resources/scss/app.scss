@@ -149,6 +149,10 @@ a{
             color: #4c5356;
             font-weight: 700;
             font-size: 23px;
+
+            @media (max-width: 1200px){
+                font-size: 16px;
+            }
         }
 
         .text-desciprion-car{
@@ -156,6 +160,11 @@ a{
             font-size: 1.25rem;
             line-height: 1.75rem;
             font-weight: 700;
+
+            @media (max-width: 1200px){
+                font-size: 1.15rem;
+                line-height: 1.55rem;
+            }
         }
 
         .box-image-car{
@@ -245,6 +254,10 @@ a{
         height: 100%;
         width: 40rem;
 
+        @media (max-width: 1300px){
+            width: 50%;
+        }
+
         img{
             width: 100%;
             height: 100%;
@@ -325,6 +338,7 @@ a{
     .title-advantages{
         font-size: 14px;
         font-weight: 700;
+        text-align: center;
     }
 
     .description-advantages{
