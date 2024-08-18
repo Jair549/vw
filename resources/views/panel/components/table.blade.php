@@ -12,6 +12,13 @@
     }
 
 @endphp
+
+<div class="main-form">
+    @include('panel.components.formTable')
+</div>
+
+<div class="divider"></div>
+
 <div class="card-header text-right">
             <a href="{{ route('sections.create', $section->slug) }}" class="btn-default">Novo</a>
         </div>
