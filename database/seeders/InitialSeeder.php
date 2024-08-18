@@ -20,6 +20,8 @@ class InitialSeeder extends Seeder
                     [
                         "name" => "logo",
                         "type" => "file",
+                        "label" => "Logo",
+                        "required" => true,
                     ]
                 ]
             ],
@@ -29,27 +31,38 @@ class InitialSeeder extends Seeder
                     [
                         "name" => "banner",
                         "type" => "file",
+                        "label" => "Banner",
+                        "required" => true,
                     ],
                     [
                         "name" => "title",
                         "type" => "text",
+                        "label" => "Título",
+                        "required" => true,
                     ],
                     [
                         "name" => "button_text",
                         "type" => "text",
+                        "label" => "Texto do botão",
+                        "required" => true,
                     ],
                     [
                         "name" => "button_link",
                         "type" => "url",
+                        "label" => "Link do botão",
+                        "required" => true,
                     ],
                 ]
             ],
             [
                 "name" => "Carros",
+                "type" => "array",
                 "columns" => [
                     [
                         "name" => "title",
                         "type" => "text",
+                        "label" => "Título",
+                        "required" => true,
                     ],
                     [
                         "name" => "carros",
@@ -58,23 +71,37 @@ class InitialSeeder extends Seeder
                             [
                                 "name" => "title",
                                 "type" => "text",
+                                "label" => "Título",
+                                "required" => true,
                             ],
                             [
                                 "name" => "subtitle",
                                 "type" => "text",
+                                "label" => "Subtítulo",
                             ],
                             [
                                 "name" => "price",
                                 "mask" => "currency",
                                 "type" => "text",
+                                "label" => "Preço",
+                                "required" => true,
                             ],
                             [
                                 "name" => "button_text",
                                 "type" => "text",
+                                "label" => "Texto do botão",
+                                "required" => true,
                             ],
                             [
                                 "name" => "button_link",
                                 "type" => "url",
+                                "label" => "Link do botão",
+                                "required" => true,
+                            ],
+                            [
+                                "name" => "image",
+                                "type" => "file",
+                                "label" => "Imagem",
                             ],
 
                         ]
@@ -86,7 +113,9 @@ class InitialSeeder extends Seeder
         foreach ($sections as $section) {
             $payload = [
                 "name" => $section["name"],
+                "type" => $section["type"] ?? "object",
                 "columns" => json_encode($section["columns"]),
+                "slug" => \App\Models\Section::uniqSlug($section["name"]),
             ];
             \App\Models\Section::updateOrCreate($payload);
         }

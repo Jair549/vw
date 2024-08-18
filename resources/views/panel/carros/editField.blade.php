@@ -1,12 +1,15 @@
 
 @php
     $columns = json_decode($section->columns);
+    $fields = json_decode($section->fields, true);
 @endphp
 
 <h3>Formulario de cadastro da seção</h3>
 
-<form action="{{ route('sections.store', $section->slug) }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('sections.updateField', ['section' => $section->slug, 'id' => $id]) }}" method="post" enctype="multipart/form-data">
     @csrf
+    @method('put')
+    
     <input type="hidden" name="section_id" value="{{ $section->id }}">
     
     @foreach($columns as $column)
@@ -48,7 +51,7 @@
                         @elseif($field->type == 'text')
                             <div class="form-group
                                 <label for="{{ $field->name }}">{{ $field->name }}</label>
-                                <input type="{{ $field->type}}" name="{{ $field->name }}" id="{{ $field->name }}">
+                                <input type="{{ $field->type }}" name="{{ $field->name }}" id="{{ $field->name }}" value="oxe">
                             </div>
                         @else
                             <div class="form-group">
