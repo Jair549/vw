@@ -1,5 +1,11 @@
 //Bootstrap
-@import '/node_modules/bootstrap/scss/bootstrap.scss';
+// @import '/node_modules/bootstrap/scss/bootstrap.scss';
+@import "bootstrap/scss/bootstrap";
+
+// Adicionar ajustes customizados se necessário para lidar com o aviso
+body  {
+  font-weight: $display-font-weight;
+}
 
 *{
     padding: 0;
@@ -248,6 +254,10 @@ a{
     margin-top: 8rem;
     position: relative;
 
+    @media (max-width: 1023px){
+        padding-top: 22rem;
+    }
+
     .bg-whatConsortium{
         position: absolute;
         right: 0;
@@ -258,11 +268,38 @@ a{
             width: 50%;
         }
 
+        @media (max-width: 1269px){
+            width: 26rem;
+        }
+
+        @media (max-width: 1023px){
+            width: 100%;
+            height: 18rem;
+            top: 0;
+            left: 0;
+        }
+
         img{
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+    }
+
+    .col-md-6{
+        @media(max-width: 1269px){
+            width: calc(100% - 26rem);
+        }
+        @media(max-width: 1023px){
+            width: 100%;
+        }
+    }
+}
+
+.container{
+    @media(min-width: 1152px){
+        max-width: 100%;
+        padding: 0 1rem;
     }
 }
 
@@ -286,6 +323,8 @@ a{
     display: flex;
     align-items: center;
     gap: .5rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
 
     svg{
         width: 52px;
