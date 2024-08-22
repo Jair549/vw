@@ -21,6 +21,7 @@ Route::group(['prefix' => '/painel'], function(){
     Route::post('/{section}', [SectionController::class, 'store'])->name('sections.store');
     Route::get('/{section}/edit/{fieldId}', [SectionController::class, 'edit'])->name('sections.edit');
     Route::put('/{section}/{fieldId}', [SectionController::class, 'update'])->name('sections.update');
+    Route::delete('/{section}/{fieldId}/remove-file/{fileId}', [SectionController::class, 'removeFile'])->name('sections.remove.file');
 });
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');

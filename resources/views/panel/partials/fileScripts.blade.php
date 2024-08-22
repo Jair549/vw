@@ -59,9 +59,9 @@
         }
     }
 
-    function removeFile(e, container, url = false) {
+    function removeFile(e, url) {
         e.preventDefault();
-
+        
         axios.delete(url)
             .then(response => {
                 location.reload();

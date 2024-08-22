@@ -218,4 +218,38 @@ class SectionController extends Controller
     {
         //
     }
+
+    public function removeFile(Section $section, $fieldId, $fileId)
+    {
+        $fields = json_decode($section->fields, true);
+        $fieldIndex = array_search($fieldId, array_column($fields['fields'], 'id'));
+        $currentField = $fields['fields'][$fieldIndex];
+
+        if (isset($currentField['files']['id']) && $currentField['files']['id'] === $fileId) {
+            $fileToDelete = $currentField['files'];
+            $fileIndex = 0; // Definindo $fileIndex como 0
+        } else {
+            $fileIndex = array_search($fileId, array_column($currentField['files'], 'id'));
+            $fileToDelete = $currentField['files'][$fileIndex];
+        }
+
+        // Remover imagem
+        if ($this->fileService->delete($fileToDelete['path'])) {
+            unset($currentField['files'][$fileIndex]);
+
+            // Verificar se o campo 'files' está vazio e removê-lo se necessário
+            if (empty($currentField['files'])) {
+                unset($currentField['files']);
+            }
+
+            $fields['fields'][$fieldIndex] = $currentField;
+            $section->fields = json_encode($fields);
+            $section->save();
+            session()->flash('success', 'Imagem removida com sucesso!');
+            return response()->json(['message' => 'Imagem removida com sucesso'], 200);
+        }
+
+        session()->flash('error', 'Erro ao remover imagem!');
+        return response()->json(['message' => 'Erro ao remover imagem'], 500);
+    }
 }
