@@ -70,6 +70,19 @@ a{
         position: relative;
         z-index: 1;
 
+        @media(max-width: 991px){
+            .container{
+                max-width: 870px;
+            }
+        }
+
+        .col-6{
+            @media (max-width: 767px){
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+
         .bg-description-header{
             background: #0082a0;
             width: 50%;
@@ -78,6 +91,10 @@ a{
             bottom: 0;
             left: 0;
             z-index: -1;
+
+            @media (max-width: 767px){
+                width: 100%;
+            }
 
             &:before{
                 content: '';
@@ -95,6 +112,14 @@ a{
         .content-description-header{
             padding: 50px 0;
             padding-left: 10px;
+
+            @media (max-width: 767px){
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                min-height: 35vh;
+            }
         }
     }
 }
@@ -106,6 +131,14 @@ a{
     color: #fff;
     max-width: 445px;
     margin-bottom: 1.5rem;
+
+    @media (max-width: 767px){
+        font-size: 1.5rem;
+        line-height: 2rem;
+        max-width: initial;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .btn.btn-page{
@@ -141,6 +174,9 @@ a{
 }
 
 .content-carousel{
+    .slick-dots{
+        left: 0;
+    }
     .header-carousel-cars{
         padding: 1rem;
         background: #f3f4f6;
@@ -222,6 +258,10 @@ a{
     opacity: 0;
     transition: ease-out 0.3s;
 
+    @media (max-width: 767px){
+        opacity: 1;
+    }
+
     &.btn-right{
         left: auto;
         right: 0;
@@ -256,6 +296,12 @@ a{
 
     @media (max-width: 1023px){
         padding-top: 22rem;
+    }
+
+    @media (max-width: 991px){
+        .container{
+            max-width: 870px;
+        }
     }
 
     .bg-whatConsortium{
@@ -297,7 +343,7 @@ a{
 }
 
 .container{
-    @media(min-width: 1152px){
+    @media(max-width: 1152px){
         max-width: 100%;
         padding: 0 1rem;
     }
@@ -339,6 +385,12 @@ a{
 
 .consortiumAdvantages{
     padding-top: 7rem;
+
+    @media (max-width: 991px){
+        .container{
+            max-width: 870px;
+        }
+    }
 }
 
 .title-strong{
@@ -356,6 +408,13 @@ a{
     grid-template-columns: 1fr 1fr 1fr;
     padding-top: 5rem;
     gap: 30px;
+
+    @media (max-width: 767px){
+        grid-template-columns: 1fr;
+        padding-top: 3rem;
+        max-width: 630px;
+        margin: auto;
+    }
 }
 
 .item-advantages{
@@ -366,12 +425,22 @@ a{
     align-items: center;
     gap: 20px;
 
+    @media (max-width: 767px){
+        height: 16rem;
+        gap: 1rem;
+        justify-content: center;
+    }
+
     svg{
         width: 48px;
         height: 48px;
         stroke-width: 1;
         margin: auto;
         display: block;
+
+        @media (max-width: 767px){
+            margin: 0;
+        }
     }
     
     .title-advantages{
@@ -394,6 +463,12 @@ a{
 .nationalVW{
     margin-top: 5rem;
 
+    @media (max-width: 991px){
+        .container{
+            max-width: 870px;
+        }
+    }
+
     .title-strong{
         margin-bottom: 5rem;
     }
@@ -406,8 +481,16 @@ a{
         margin: auto;
         max-width: 64rem;
 
+        @media (max-width: 767px){
+            grid-template-columns: 1fr;
+        }
+
         figure{
             height: 20rem;
+
+            @media (max-width: 767px){
+                height: 14rem;
+            }
 
             img{
                 height: 100%;
@@ -421,7 +504,31 @@ a{
             line-height: 2rem;
             padding-left: 4rem;
             padding-right: 4rem;
+
+            @media (max-width: 767px){
+                display: flex;
+                align-items: center;
+                height: 16rem;
+                font-size: 1.25rem;
+                line-height: 1.75rem;
+            }
         }
+    }
+}
+
+.box-one{
+    order: 1;
+
+    @media (max-width: 767px){
+        order: 2;
+    }
+}
+
+.box-two{
+    order: 2;
+
+    @media (max-width: 767px){
+        order: 1;
     }
 }
 
@@ -449,6 +556,10 @@ a{
         max-width: 42rem;
         margin: auto;
 
+        @media (max-width: 767px){
+            max-width: 20rem;
+        }
+
         .sup-title{
             font-size: 15px;
             font-weight: 700;
@@ -460,6 +571,11 @@ a{
             line-height: 2.25rem;
             font-weight: 700;
             color: #fff;
+
+            @media (max-width: 767px){
+                font-size: 1rem;
+                line-height: 1.75rem;
+            }
         }
 
         .btn-page{
@@ -474,8 +590,21 @@ a{
 .faq{
     padding-top: 5rem;
 
+    @media (max-width: 991px){
+        padding-left: 2rem;
+        padding-right: 2rem;
+        .container{
+            max-width: 870px;
+        }
+    }
+
     .title-strong{
         margin-bottom: 2rem;
+
+        @media (max-width: 767px){
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
     }
 
     .sub-title{
@@ -518,6 +647,10 @@ a{
                 padding: .5rem 1rem;
                 border-bottom: 2px solid #a8adb3;
 
+                @media (max-width: 767px){
+                    font-size: 1rem;
+                }
+
                 &:focus{
                     box-shadow: none;
                     box-shadow: none!important;
@@ -529,6 +662,10 @@ a{
             border: none!important;
             padding-bottom: 0;
 
+            @media (max-width: 767px){
+                padding-top: 0;
+            }
+
             p{
                 margin-top: 1.25em;
                 margin-bottom: 0;
@@ -536,6 +673,10 @@ a{
                 padding-left: .75rem;
                 line-height: 30px;
                 font-size: 15px;
+
+                @media (max-width: 767px){
+                    padding: 0;
+                }
             }
         }
     }
@@ -552,6 +693,11 @@ a{
     .header-footer{
         display: flex;
         justify-content: space-between;
+        margin-top: 2.5rem;
+
+        @media (max-width: 838px){
+            flex-direction: column;
+        }
     }
 }
 

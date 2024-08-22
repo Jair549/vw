@@ -10,10 +10,10 @@
             </div>
         </div>
         <div class="align-box-national">
-            <div class="box-description-nationalVW">
+            <div class="box-description-nationalVW box-one">
                 <p>São <b>mais de 700 mil carros</b> entregues e histórias pelas estradas brasileiras desde que a modalidade de consórcio nasceu no Brasil na década de 1960.</p>
             </div>
-            <figure>
+            <figure class="box-two">
                 <img src="{{ asset('img/family.jpg') }}" alt="">
             </figure>
         </div>
