@@ -343,7 +343,7 @@ a{
 }
 
 .container{
-    @media(min-width: 1152px){
+    @media(max-width: 1152px){
         max-width: 100%;
         padding: 0 1rem;
     }
@@ -693,6 +693,11 @@ a{
     .header-footer{
         display: flex;
         justify-content: space-between;
+        margin-top: 2.5rem;
+
+        @media (max-width: 838px){
+            flex-direction: column;
+        }
     }
 }
 
