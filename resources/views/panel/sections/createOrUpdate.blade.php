@@ -18,7 +18,7 @@
 
     <div class="card-body">
 
-        @include('panel.components.form', ['update' => $update])
+        @include('panel.components.formFields', ['update' => $update])
     
     </div>
 </div>

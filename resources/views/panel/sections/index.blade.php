@@ -18,7 +18,7 @@
              @include('panel.components.table')
         @else
             <!-- formulario -->
-            @include('panel.components.form')
+            @include('panel.components.formFields')
         @endif
     </div>
 </div>

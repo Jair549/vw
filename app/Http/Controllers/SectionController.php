@@ -35,7 +35,20 @@ class SectionController extends Controller
     {
         $sections = Section::all();
         $update = false;
-        return view('panel.sections.create', compact('section', 'sections', 'update'));
+
+        // Decodificar as colunas do JSON
+        $columns = json_decode($section->columns, true);
+
+        // Filtrar as colunas onde a chave 'fields' não está presente
+        $mainColumns = array_filter($columns, function($column) {
+            return !isset($column['fields']);
+        });
+
+        $fieldsColumns = array_filter($columns, function($column) {
+            return isset($column['fields']);
+        });
+
+        return view('panel.sections.createOrUpdate', compact('section', 'sections', 'update', 'mainColumns', 'fieldsColumns'));
     }
 
     /**
@@ -43,10 +56,7 @@ class SectionController extends Controller
      */
     public function store(Request $request, Section $section)
     {
-        $section = Section::find($request->section_id);
-        unset($request['section_id']);
         $fields = json_decode($section->fields, true);
-
         //Verificar se existe image, e salvar a imagem na pasta e retornar o path
         if ($request->hasFile('image')) {
             $path = $this->fileService->store($request->file('image'));
@@ -55,25 +65,30 @@ class SectionController extends Controller
                 'path' => $path,
             ];
         }
-        $payload = $request->all();
-        unset($payload['image']);
-        unset($payload['_token']);
 
-        //Verificar se o tipo do campo é array ou objeto
-        if($section->type == 'array'){
-            $fields[] = [
-                'id' => uniqid(),
-                'fields' => $payload
-            ];
+        unset($request['image']);
+        unset($request['_token']);
+
+        $isMain = $request['formMain'];
+        unset($request['formMain']);
+
+        // Verificar se é pra atualizar os campos exceto fields
+        if($isMain){
+            $payload = $request->all();
+            $payload['fields'] = isset($fields['fields']) ? $fields['fields'] : [];
         }else{
-            $fields = $payload;
+            $payload = $fields;
+            $request['id'] = uniqid();
+            $payload['fields'][] = $request->except(['image']);
         }
         
-        $section->fields =  json_encode($fields);
-        $section->save();
+        $payload['id'] = isset($fields['id']) ? $fields['id'] : uniqid();
 
+        $section->fields =  json_encode($payload);
+        $section->save();
+        
         session()->flash('success', 'Cadastro realizado com sucesso!');
-        return redirect()->route('sections.create', $section->slug);
+        return redirect()->route('panel.show', $section->slug);
     }
 
     /**
@@ -83,37 +98,118 @@ class SectionController extends Controller
     {
         $update = false;
         $sections = $this->sections->all();
-        return view('panel.sections.index', compact('section', 'sections', 'update'));
+
+        // Decodificar as colunas do JSON
+        $columns = json_decode($section->columns, true);
+
+        // Filtrar as colunas onde a chave 'fields' não está presente
+        $mainColumns = array_filter($columns, function($column) {
+            return !isset($column['fields']);
+        });
+
+        $fieldsColumns = array_filter($columns, function($column) {
+            return isset($column['fields']);
+        });
+
+        return view('panel.sections.index', compact('section', 'sections', 'update', 'mainColumns', 'fieldsColumns'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Section $section)
+    public function edit(Section $section, $fieldId)
     {
         $sections = Section::all();
         $update = true;
-        return view('panel.sections.create', compact('section', 'sections', 'update'));
+
+        // Decodificar as colunas do JSON
+        $columns = json_decode($section->columns, true);
+
+        // Filtrar as colunas onde a chave 'fields' não está presente
+        $mainColumns = array_filter($columns, function($column) {
+            return !isset($column['fields']);
+        });
+
+        $fieldsColumns = array_filter($columns, function($column) {
+            return isset($column['fields']);
+        });
+
+        $fieldData = json_decode($section->fields, true);
+
+        $currentField = array_filter($fieldData['fields'], function($field) use ($fieldId) {
+            return $field['id'] == $fieldId;
+        });
+
+        return view('panel.sections.createOrUpdate', compact('section', 'sections', 'update', 'mainColumns', 'fieldsColumns', 'currentField'));
     }
 
-    public function editField(Section $section, $id)
-    {
-        return view('panel.carros.editField', compact('section', 'id'));
-    }
+    // public function editField(Section $section, $id)
+    // {
+    //     return view('panel.carros.editField', compact('section', 'id'));
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Section $section)
+    public function update(Request $request, Section $section, $fieldId)
     {
-        //Verificar se existe image, se sim, deletar a imagem antiga e salvar a nova imagem na pasta e retornar o path
-    }
+        $fields = json_decode($section->fields, true);
+        $newImage = false;
+        //Verificar se existe image, e salvar a imagem na pasta e retornar o path
+        if ($request->hasFile('image')) {
+            $path = $this->fileService->store($request->file('image'));
+            $request['files'] = [
+                'id' => uniqid(),
+                'path' => $path,
+            ];
+            $newImage = true;
+        }
 
-    public function updateField(Request $request, Section $section, $id)
-    {
+        unset($request['image']);
+        unset($request['_token']);
+        unset($request['_method']);
+
+        $isMain = $request['formMain'];
+        unset($request['formMain']);
+
+        // Verificar se é pra atualizar os campos exceto fields
+        if($isMain){
+            $payload = $request->all();
+            $payload['fields'] = isset($fields['fields']) ? $fields['fields'] : [];
+        }else{
+            $payload = $fields;
+            // Encontrar o field com base no fieldId e substituir os dados
+            $fieldIndex = array_search($fieldId, array_column($fields['fields'], 'id'));
+            $existingField = $fields['fields'][$fieldIndex];
+    
+            // Preservar os dados da imagem se uma nova imagem não foi enviada
+            if (!$newImage && isset($existingField['files'])) {
+                $request['files'] = $existingField['files'];
+            }
+
+            // Preservar o id do campo
+            $request['id'] = $existingField['id'];
+    
+            $payload['fields'][$fieldIndex] = $request->except(['image']);
+        }
+        
+        $payload['id'] = isset($fields['id']) ? $fields['id'] : uniqid();
+
+        $section->fields =  json_encode($payload);
+        $section->save();
+        
+        session()->flash('success', 'Cadastro atualizado com sucesso!');
+        return redirect()->route('panel.show', $section->slug);
+
         //Verificar se existe image, se sim, deletar a imagem antiga e salvar a nova imagem na pasta e retornar o path
         // xdebug_break();
     }
+
+    // public function updateField(Request $request, Section $section, $id)
+    // {
+    //     //Verificar se existe image, se sim, deletar a imagem antiga e salvar a nova imagem na pasta e retornar o path
+    //     // xdebug_break();
+    // }
 
     /**
      * Remove the specified resource from storage.

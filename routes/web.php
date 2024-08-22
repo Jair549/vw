@@ -19,8 +19,8 @@ Route::group(['prefix' => '/painel'], function(){
     Route::get('/{section}', [SectionController::class, 'show'])->name('panel.show');
     Route::get('/{section}/create', [SectionController::class, 'create'])->name('sections.create');
     Route::post('/{section}', [SectionController::class, 'store'])->name('sections.store');
-    Route::get('/{section}/edit', [SectionController::class, 'edit'])->name('sections.edit');
-    Route::put('/{section}', [SectionController::class, 'update'])->name('sections.update');
+    Route::get('/{section}/edit/{fieldId}', [SectionController::class, 'edit'])->name('sections.edit');
+    Route::put('/{section}/{fieldId}', [SectionController::class, 'update'])->name('sections.update');
 });
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
