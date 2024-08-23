@@ -107,6 +107,41 @@ class InitialSeeder extends Seeder
                         ]
                     ]
                 ]
+            ],
+            [
+                "name" => "O que é consórcio",
+                "columns" => [
+                    [
+                        "name" => "title",
+                        "type" => "text",
+                        "label" => "Título",
+                        "multicolor" => true,
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "image",
+                        "type" => "file",
+                        "label" => "Imagem",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "carros",
+                        "type" => "array",
+                        "fields" => [
+                            [
+                                "name" => "text",
+                                "type" => "text",
+                                "label" => "Título",
+                                "required" => true,
+                            ],
+                            [
+                                "name" => "image",
+                                "type" => "file",
+                                "label" => "Imagem",
+                            ]
+                        ]
+                    ]
+                ]
             ]
         ];
 
