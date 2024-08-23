@@ -56,7 +56,6 @@ class SectionController extends Controller
      */
     public function store(Request $request, Section $section)
     {
-        xdebug_break();
         $fields = json_decode($section->fields, true);
         //Verificar se existe image, e salvar a imagem na pasta e retornar o path
         if ($request->hasFile('image')) {
@@ -156,7 +155,6 @@ class SectionController extends Controller
      */
     public function update(Request $request, Section $section, $fieldId)
     {
-        xdebug_break();
         $fields = json_decode($section->fields, true);
         $newImage = false;
         //Verificar se existe image, e salvar a imagem na pasta e retornar o path
@@ -226,6 +224,27 @@ class SectionController extends Controller
             {
                 unset($currentField['files']);
                 $fields['fields'][$fieldIndex] = $currentField;
+                $section->fields = json_encode($fields);
+                $section->save();
+
+                session()->flash('success', 'Imagem removida com sucesso!');
+                return response()->json(['message' => 'Imagem removida com sucesso'], 200);
+            }
+        }
+
+        session()->flash('error', 'Erro ao remover imagem!');
+        return response()->json(['message' => 'Erro ao remover imagem'], 500);
+    }
+
+    public function removeMainFile(Section $section, $fieldId, $fileId)
+    {
+        $fields = json_decode($section->fields, true);
+
+        if(!empty($fields['files']) && $fields['files']['id'] == $fileId)
+        {
+            if($this->fileService->delete($fields['files']['path']))
+            {
+                unset($fields['files']);
                 $section->fields = json_encode($fields);
                 $section->save();
 
