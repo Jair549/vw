@@ -25,7 +25,8 @@ class SectionController extends Controller
      */
     public function index()
     {
-        //
+        $sections = Section::with('contents')->get();
+        return view('index', compact('sections'));
     }
 
     /**
@@ -88,6 +89,8 @@ class SectionController extends Controller
 
         $section->fields =  json_encode($payload);
         $section->save();
+
+        $this->addMainContent($section);
         
         session()->flash('success', 'Cadastro realizado com sucesso!');
         return redirect()->route('panel.show', $section->slug);
@@ -144,11 +147,6 @@ class SectionController extends Controller
 
         return view('panel.sections.createOrUpdate', compact('section', 'sections', 'update', 'mainColumns', 'fieldsColumns', 'currentField'));
     }
-
-    // public function editField(Section $section, $id)
-    // {
-    //     return view('panel.carros.editField', compact('section', 'id'));
-    // }
 
     /**
      * Update the specified resource in storage.
@@ -292,6 +290,72 @@ class SectionController extends Controller
         // Retornar uma resposta de erro se o campo não for encontrado
         session()->flash('error', 'Erro ao remover campo!');
         return redirect()->back();
+    }
+
+    private function addMainContent($section)
+    {
+        $section->load('contents');
+        // Ignorar os fields dentro de section->fields
+        $fields = json_decode($section->fields);
+        $dataFields = $fields->fields;
+        
+        $codeMainContent = $section->contents[0]->code_main_content;
+        $codeContentFields = $section->contents[0]->code_content_fields;
+        
+        // Substituir as chaves pelos valores
+        foreach ($fields as $key => $value) {
+            
+            if ($key == "files") {
+                $codeMainContent = str_replace("{{image}}", 'storage/' . $value->path, $codeMainContent);
+            }else if($key == 'image'){
+                continue;
+            }else if($key == 'fields'){
+                
+                // $fieldsContent = '';//Vamos criar a função para montar o conteúdo dos fields
+                $fieldsContent = $this->addFieldsContent($dataFields, $codeContentFields);
+                $codeMainContent = str_replace("{{fields}}", $fieldsContent, $codeMainContent);
+            } else {
+                // Verificar e substituir *palavra* por <b>palavra</b>
+                $value = preg_replace('/\*(.*?)\*/', '<b>$1</b>', $value);
+                $codeMainContent = str_replace("{{{$key}}}", $value, $codeMainContent);
+            }
+        }
+
+        // Verificar se todas as chaves foram substituídas
+        preg_match_all('/{{(.*?)}}/', $codeMainContent, $matches);
+        if (!empty($matches[1])) {
+            foreach ($matches[1] as $missingKey) {
+                // Log ou tratamento de chaves não substituídas
+                error_log("Chave não substituída: {{$missingKey}}");
+            }
+        }
+
+        $contentPayload = [
+            "section_id" => $section->id,
+            "main_content" => $codeMainContent
+        ];
+
+        \App\Models\SectionContent::updateOrCreate(["section_id" => $section->id], $contentPayload);
+    }
+
+    private function addFieldsContent($dataFields, $codeContentFields)
+    {
+        $fieldsContent = '';
+        foreach ($dataFields as $field) {
+            $fieldContent = $codeContentFields;
+            foreach ($field as $key => $value) {
+                if ($key == "files") {
+                    $fieldContent = str_replace("{{image}}", 'storage/' . $value->path, $fieldContent);
+                } else {
+                    // Verificar e substituir *palavra* por <b>palavra</b>
+                    $value = preg_replace('/\*(.*?)\*/', '<b>$1</b>', $value);
+                    $fieldContent = str_replace("{{{$key}}}", $value, $fieldContent);
+                }
+            }
+            $fieldsContent .= $fieldContent;
+        }
+
+        return $fieldsContent;
     }
 
 }

@@ -3,9 +3,10 @@
 use App\Http\Controllers\SectionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/', [SectionController::class, 'index'])->name('index');
+Route::get('/welcome', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::group(['prefix' => '/painel'], function(){
     Route::get('/{section}', [SectionController::class, 'show'])->name('panel.show');

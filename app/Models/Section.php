@@ -25,6 +25,11 @@ class Section extends Model
         return 'slug';
     }
 
+    public function contents()
+    {
+        return $this->hasMany(SectionContent::class);
+    }
+
     public static function uniqSlug($name)
     {
         $slug = Str::slug($name);
