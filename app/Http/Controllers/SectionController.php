@@ -56,6 +56,7 @@ class SectionController extends Controller
      */
     public function store(Request $request, Section $section)
     {
+        xdebug_break();
         $fields = json_decode($section->fields, true);
         //Verificar se existe image, e salvar a imagem na pasta e retornar o path
         if ($request->hasFile('image')) {
@@ -64,6 +65,8 @@ class SectionController extends Controller
                 'id' => uniqid(),
                 'path' => $path,
             ];
+        }else if( $fields && isset($fields['files'])){
+            $request['files'] = $fields['files'];
         }
 
         unset($request['image']);
@@ -153,6 +156,7 @@ class SectionController extends Controller
      */
     public function update(Request $request, Section $section, $fieldId)
     {
+        xdebug_break();
         $fields = json_decode($section->fields, true);
         $newImage = false;
         //Verificar se existe image, e salvar a imagem na pasta e retornar o path
