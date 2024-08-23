@@ -110,6 +110,7 @@ class InitialSeeder extends Seeder
             ],
             [
                 "name" => "O que é consórcio",
+                "type" => "array",
                 "columns" => [
                     [
                         "name" => "title",
@@ -125,7 +126,7 @@ class InitialSeeder extends Seeder
                         "required" => true,
                     ],
                     [
-                        "name" => "carros",
+                        "name" => "descricao_consorcio",
                         "type" => "array",
                         "fields" => [
                             [

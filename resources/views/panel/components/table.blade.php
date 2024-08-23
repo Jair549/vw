@@ -11,6 +11,17 @@
         return $name;
     }
 
+    function getIndexWithFields($columns) {
+        foreach ($columns as $index => $column) {
+            if (isset($column->fields)) {
+                return $index;
+            }
+        }
+        return null; // Retorna null se não encontrar
+    }
+
+    $indexWithFields = getIndexWithFields($columns);
+
 @endphp
 
 <div class="main-form">
@@ -18,7 +29,6 @@
 </div>
 
 <div class="divider"></div>
-
 <div class="card-header text-right">
             <a href="{{ route('sections.create', $section->slug) }}" class="btn-default">Novo</a>
         </div>
@@ -29,10 +39,11 @@
                     <tr>
                     @if(!empty($fields))
                         @foreach(array_keys($fields['fields'][0]) as $key)
+                            
                             @if($key == 'files')
                                 <th>Imagem</th>
                             @else
-                                <th>{{ getLabelByName($columns[1]->fields, $key) }}</th>
+                                <th>{{ getLabelByName($columns[$indexWithFields]->fields, $key) }}</th>
                             @endif
                         @endforeach
                     @endif
