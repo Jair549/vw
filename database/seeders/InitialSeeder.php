@@ -18,7 +18,7 @@ class InitialSeeder extends Seeder
                 "name" => "Logo",
                 "columns" => [
                     [
-                        "name" => "logo",
+                        "name" => "image",
                         "type" => "file",
                         "label" => "Logo",
                         "required" => true,
@@ -29,7 +29,7 @@ class InitialSeeder extends Seeder
                 "name" => "Header",
                 "columns" => [
                     [
-                        "name" => "banner",
+                        "name" => "image",
                         "type" => "file",
                         "label" => "Banner",
                         "required" => true,
