@@ -81,7 +81,7 @@
 
 
 
-                                                <form id="form-delete-{{ $item['id']}}" action="#" method="post" style="display: none;">
+                                                <form id="form-delete-{{ $item['id']}}" action="{{ route('sections.remove.field', ['section' => $section->slug, 'fieldId' => $item['id']]) }}" method="post" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>

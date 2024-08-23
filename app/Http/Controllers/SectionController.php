@@ -200,16 +200,7 @@ class SectionController extends Controller
         
         session()->flash('success', 'Cadastro atualizado com sucesso!');
         return redirect()->route('panel.show', $section->slug);
-
-        //Verificar se existe image, se sim, deletar a imagem antiga e salvar a nova imagem na pasta e retornar o path
-        // xdebug_break();
     }
-
-    // public function updateField(Request $request, Section $section, $id)
-    // {
-    //     //Verificar se existe image, se sim, deletar a imagem antiga e salvar a nova imagem na pasta e retornar o path
-    //     // xdebug_break();
-    // }
 
     /**
      * Remove the specified resource from storage.
@@ -225,31 +216,59 @@ class SectionController extends Controller
         $fieldIndex = array_search($fieldId, array_column($fields['fields'], 'id'));
         $currentField = $fields['fields'][$fieldIndex];
 
-        if (isset($currentField['files']['id']) && $currentField['files']['id'] === $fileId) {
-            $fileToDelete = $currentField['files'];
-            $fileIndex = 0; // Definindo $fileIndex como 0
-        } else {
-            $fileIndex = array_search($fileId, array_column($currentField['files'], 'id'));
-            $fileToDelete = $currentField['files'][$fileIndex];
-        }
-
-        // Remover imagem
-        if ($this->fileService->delete($fileToDelete['path'])) {
-            unset($currentField['files'][$fileIndex]);
-
-            // Verificar se o campo 'files' está vazio e removê-lo se necessário
-            if (empty($currentField['files'])) {
+        if(!empty($currentField['files']) && $currentField['files']['id'] == $fileId)
+        {
+            if($this->fileService->delete($currentField['files']['path']))
+            {
                 unset($currentField['files']);
-            }
+                $fields['fields'][$fieldIndex] = $currentField;
+                $section->fields = json_encode($fields);
+                $section->save();
 
-            $fields['fields'][$fieldIndex] = $currentField;
-            $section->fields = json_encode($fields);
-            $section->save();
-            session()->flash('success', 'Imagem removida com sucesso!');
-            return response()->json(['message' => 'Imagem removida com sucesso'], 200);
+                session()->flash('success', 'Imagem removida com sucesso!');
+                return response()->json(['message' => 'Imagem removida com sucesso'], 200);
+            }
         }
 
         session()->flash('error', 'Erro ao remover imagem!');
         return response()->json(['message' => 'Erro ao remover imagem'], 500);
     }
+
+    public function removeField(Section $section, $fieldId)
+    {
+        // Decodificar os campos da seção
+        $fields = json_decode($section->fields, true);
+
+        // Encontrar o índice do campo a ser removido
+        $fieldIndex = array_search($fieldId, array_column($fields['fields'], 'id'));
+
+        // Verificar se o campo foi encontrado
+        if ($fieldIndex !== false) {
+            $currentField = $fields['fields'][$fieldIndex];
+
+            // Verificar se há uma imagem associada ao campo e removê-la
+            if (!empty($currentField['files']) && isset($currentField['files']['path'])) {
+                $this->fileService->delete($currentField['files']['path']);
+            }
+
+            // Remover o campo do array
+            unset($fields['fields'][$fieldIndex]);
+
+            // Reindexar o array para evitar buracos nos índices
+            $fields['fields'] = array_values($fields['fields']);
+
+            // Atualizar e salvar a seção
+            $section->fields = json_encode($fields);
+            $section->save();
+
+            // Retornar uma resposta de sucesso
+            session()->flash('success', 'Campo removido com sucesso!');
+            return redirect()->back();
+        }
+
+        // Retornar uma resposta de erro se o campo não for encontrado
+        session()->flash('error', 'Erro ao remover campo!');
+        return redirect()->back();
+    }
+
 }
