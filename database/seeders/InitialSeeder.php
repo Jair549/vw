@@ -240,6 +240,65 @@ class InitialSeeder extends Seeder
                         <p class="text-description">{{text}}</p>
                     </div>
                 ',
+            ],
+            [
+                "name" => "Vantagens",
+                "type" => "array",
+                "columns" => [
+                    [
+                        "name" => "title",
+                        "type" => "text",
+                        "label" => "Título",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "nossas_vantagens",
+                        "type" => "array",
+                        "fields" => [
+                            [
+                                "name" => "image",
+                                "type" => "file",
+                                "label" => "Imagem",
+                            ],
+                            [
+                                "name" => "title",
+                                "type" => "text",
+                                "label" => "Título",
+                                "multicolor" => true,
+                                "required" => true,
+                            ],
+                            [
+                                "name" => "text",
+                                "type" => "text",
+                                "label" => "Texto",
+                                "required" => true,
+                            ]
+                        ]
+                    ]
+                ],
+                "code_main_content" => '
+                <section class="consortiumAdvantages">
+                    <h1 class="title-strong">{{title}}</h1>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="box-card-advantages">
+                                    {{fields}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                ',
+                "code_content_fields" => '
+                <div class="item-advantages">
+                    <img src="{{image}}" alt="">
+                    <h3 class="title-advantages">{{title}}</h3>
+                    <div class="description-advantages">
+                        <p>{{text}}</p>
+                    </div>
+                </div>
+                ',
             ]
         ];
 
