@@ -141,9 +141,9 @@ class SectionController extends Controller
 
         $fieldData = json_decode($section->fields, true);
 
-        $currentField = array_filter($fieldData['fields'], function($field) use ($fieldId) {
+        $currentField = array_values(array_filter($fieldData['fields'], function($field) use ($fieldId) {
             return $field['id'] == $fieldId;
-        });
+        }))[0] ?? null;
 
         return view('panel.sections.createOrUpdate', compact('section', 'sections', 'update', 'mainColumns', 'fieldsColumns', 'currentField'));
     }
