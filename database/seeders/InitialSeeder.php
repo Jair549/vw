@@ -299,6 +299,130 @@ class InitialSeeder extends Seeder
                     </div>
                 </div>
                 ',
+            ],
+            [
+                "name" => "Por que escolher a gente",
+                "type" => "array",
+                "code_main_content" => '
+                    <section class="nationalVW">
+                        <h1 class="title-strong">{{title}}</h1>
+                        <div class="container">
+                            {{fields}}
+                        </div>
+                    </section>
+                ',
+                "code_content_fields" => '
+                    <div class="align-box-national">
+                        <figure>
+                            <img src="{{image}}" alt="">
+                        </figure>
+                        <div class="box-description-nationalVW">
+                            <p>{{text}}</p>
+                        </div>
+                    </div>
+                ',
+                "columns" => [
+                    [
+                        "name" => "title",
+                        "type" => "text",
+                        "label" => "Título",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "items",
+                        "type" => "array",
+                        "fields" => [
+                            [
+                                "name" => "text",
+                                "type" => "text",
+                                "label" => "Texto",
+                                "required" => true,
+                            ],
+                            [
+                                "name" => "image",
+                                "type" => "file",
+                                "label" => "Imagem",
+                            ]
+                        ]
+                    ],
+                ],
+            ],
+            [
+                "name" => "Simulador",
+                "columns" => [
+                    [
+                        "name" => "title",
+                        "type" => "text",
+                        "label" => "Título",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "subtitle",
+                        "type" => "text",
+                        "label" => "Subtítulo",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "button_text",
+                        "type" => "text",
+                        "label" => "Texto do botão",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "button_link",
+                        "type" => "url",
+                        "label" => "Link do botão",
+                        "required" => true,
+                    ],
+                ],
+                "code_main_content" => '
+                    <section class="callAction">
+                        <div class="container">
+                            <div class="content-callAction">
+                                <h4 class="sup-title">{{title}}</h4>
+                                <h1 class="title-callAction">{{subtitle}}</h1>
+                                <a href="{{button_link}}" class="btn btn-page">{{button_text}}</a>
+                            </div>
+                        </div>
+                    </section>
+                ',
+                "code_content_fields" => '',
+            ],
+            [
+                "name" => "Faq",
+                "type" => "array",
+                "columns" => [
+                    [
+                        "name" => "title",
+                        "type" => "text",
+                        "label" => "Título",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "text",
+                        "type" => "text",
+                        "label" => "Texto",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "faqs",
+                        "type" => "array",
+                        "fields" => [
+                            [
+                                "name" => "question",
+                                "type" => "text",
+                                "label" => "Pergunta",
+                                "required" => true,
+                            ],
+                            [
+                                "name" => "answer",
+                                "type" => "text",
+                                "label" => "Resposta",
+                                "required" => true,
+                            ],
+                        ]
+                    ]
+                ],
             ]
         ];
 
