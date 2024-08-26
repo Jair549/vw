@@ -423,6 +423,38 @@ class InitialSeeder extends Seeder
                         ]
                     ]
                 ],
+                "code_main_content" => '
+                    <section class="faq">
+                        <h1 class="title-strong">{{title}}</h1>
+                        <h4 class="sub-title">{{text}}
+                        </h4>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="accordion" id="accordionExample">
+                                        {{fields}}                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                ',
+                "code_content_fields" => '
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                {{question}}
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>{{answer}}</p>
+                            </div>
+                        </div>
+                    </div>
+                ',
             ]
         ];
 
