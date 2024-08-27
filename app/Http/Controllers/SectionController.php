@@ -197,6 +197,8 @@ class SectionController extends Controller
 
         $section->fields =  json_encode($payload);
         $section->save();
+
+        $this->addMainContent($section);
         
         session()->flash('success', 'Cadastro atualizado com sucesso!');
         return redirect()->route('panel.show', $section->slug);
