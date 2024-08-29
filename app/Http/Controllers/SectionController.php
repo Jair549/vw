@@ -26,7 +26,15 @@ class SectionController extends Controller
     public function index()
     {
         $sections = Section::with('contents')->get();
-        return view('index', compact('sections'));
+        $sectionLogo = $sections->where('slug', 'logo')->first();
+        $logoFields = json_decode($sectionLogo->fields, true);
+        $logo = $logoFields ? 'storage/' . $logoFields['files']['path'] : null;
+
+        $sectionHeader = $sections->where('name', 'Configurações e SEO')->first();
+        $headerFields = json_decode($sectionHeader->fields, true);
+        // dd($headerFields);
+        
+        return view('index', compact('sections', 'logo', 'headerFields'));
     }
 
     /**
@@ -90,7 +98,9 @@ class SectionController extends Controller
         $section->fields =  json_encode($payload);
         $section->save();
 
-        $this->addMainContent($section);
+        if($section->name != 'Configurações e SEO'){
+            $this->addMainContent($section);
+        }
         
         session()->flash('success', 'Cadastro realizado com sucesso!');
         return redirect()->route('panel.show', $section->slug);
@@ -198,7 +208,9 @@ class SectionController extends Controller
         $section->fields =  json_encode($payload);
         $section->save();
 
-        $this->addMainContent($section);
+        if($section->name != 'Configurações e SEO'){
+            $this->addMainContent($section);
+        }
         
         session()->flash('success', 'Cadastro atualizado com sucesso!');
         return redirect()->route('panel.show', $section->slug);
@@ -228,7 +240,9 @@ class SectionController extends Controller
                 $section->fields = json_encode($fields);
                 $section->save();
 
-                $this->addMainContent($section);
+                if($section->name != 'Configurações e SEO'){
+                    $this->addMainContent($section);
+                }
 
                 session()->flash('success', 'Imagem removida com sucesso!');
                 return response()->json(['message' => 'Imagem removida com sucesso'], 200);
@@ -252,7 +266,9 @@ class SectionController extends Controller
                 $section->fields = json_encode($fields);
                 $section->save();
 
-                $this->addMainContent($section);
+                if($section->name != 'Configurações e SEO'){
+                    $this->addMainContent($section);
+                }
 
                 session()->flash('success', 'Imagem removida com sucesso!');
                 return response()->json(['message' => 'Imagem removida com sucesso'], 200);
@@ -291,7 +307,9 @@ class SectionController extends Controller
             $section->fields = json_encode($fields);
             $section->save();
 
-            $this->addMainContent($section);
+            if($section->name != 'Configurações e SEO'){
+                $this->addMainContent($section);
+            }
 
             // Retornar uma resposta de sucesso
             session()->flash('success', 'Campo removido com sucesso!');
@@ -305,6 +323,7 @@ class SectionController extends Controller
 
     private function addMainContent($section)
     {
+        
         $section->load('contents');
         // Ignorar os fields dentro de section->fields
         $fields = json_decode($section->fields);

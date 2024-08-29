@@ -558,17 +558,48 @@ class InitialSeeder extends Seeder
                 ',
                 "code_content_fields" => '<p>{{text}}</p>',
             ],
+            //Informações do head como meta para SEO e scripts como google analytcs e etc
             [
-                "name" => "CRM",
+                "name" => "Configurações e SEO",
+                "type" => "array",
                 "columns" => [
                     [
-                        "name" => "script",
+                        "name" => "image",
+                        "type" => "file",
+                        "label" => "Favicon",
+                        "required" => false,
+                    ],
+                    [
+                        "name" => "title",
                         "type" => "text",
-                        "label" => "Script",
+                        "label" => "Título",
                         "required" => true,
                     ],
-                ],
-                "code_main_content" => '{{script}}',
+                    [
+                        "name" => "scripts",
+                        "type" => "textarea",
+                        "label" => "Scripts",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "meta",
+                        "type" => "array",
+                        "fields" => [
+                            [
+                                "name" => "name",
+                                "type" => "text",
+                                "label" => "Nome",
+                                "required" => true,
+                            ],
+                            [
+                                "name" => "content",
+                                "type" => "text",
+                                "label" => "Conteúdo",
+                                "required" => true,
+                            ],
+                        ]
+                    ]
+                ]
             ]
         ];
 
