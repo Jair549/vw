@@ -214,6 +214,7 @@ class SectionController extends Controller
 
     public function removeFile(Section $section, $fieldId, $fileId)
     {
+        
         $fields = json_decode($section->fields, true);
         $fieldIndex = array_search($fieldId, array_column($fields['fields'], 'id'));
         $currentField = $fields['fields'][$fieldIndex];
@@ -227,6 +228,8 @@ class SectionController extends Controller
                 $section->fields = json_encode($fields);
                 $section->save();
 
+                $this->addMainContent($section);
+
                 session()->flash('success', 'Imagem removida com sucesso!');
                 return response()->json(['message' => 'Imagem removida com sucesso'], 200);
             }
@@ -238,6 +241,7 @@ class SectionController extends Controller
 
     public function removeMainFile(Section $section, $fieldId, $fileId)
     {
+        
         $fields = json_decode($section->fields, true);
 
         if(!empty($fields['files']) && $fields['files']['id'] == $fileId)
@@ -247,6 +251,8 @@ class SectionController extends Controller
                 unset($fields['files']);
                 $section->fields = json_encode($fields);
                 $section->save();
+
+                $this->addMainContent($section);
 
                 session()->flash('success', 'Imagem removida com sucesso!');
                 return response()->json(['message' => 'Imagem removida com sucesso'], 200);
@@ -259,6 +265,7 @@ class SectionController extends Controller
 
     public function removeField(Section $section, $fieldId)
     {
+        
         // Decodificar os campos da seção
         $fields = json_decode($section->fields, true);
 
@@ -283,6 +290,8 @@ class SectionController extends Controller
             // Atualizar e salvar a seção
             $section->fields = json_encode($fields);
             $section->save();
+
+            $this->addMainContent($section);
 
             // Retornar uma resposta de sucesso
             session()->flash('success', 'Campo removido com sucesso!');
