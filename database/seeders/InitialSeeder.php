@@ -455,6 +455,72 @@ class InitialSeeder extends Seeder
                         </div>
                     </div>
                 ',
+            ],
+            [
+                "name" => "Footer",
+                "type" => "array",
+                "columns" => [
+                    [
+                        "name" => "image",
+                        "type" => "file",
+                        "label" => "Logo",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "sac",
+                        "type" => "text",
+                        "label" => "SAC",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "email",
+                        "type" => "email",
+                        "label" => "E-mail",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "telefone_deficiente",
+                        "type" => "text",
+                        "label" => "Deficiente auditivo/fala",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "ouvidoria",
+                        "type" => "text",
+                        "label" => "Telefone Ouvidoria",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "site",
+                        "type" => "url",
+                        "label" => "Url do site",
+                        "required" => false,
+                    ],
+                    [
+                        "name" => "text",
+                        "type" => "text",
+                        "label" => "Texto",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "text_copy",
+                        "type" => "text",
+                        "label" => "Texto do copy",
+                        "required" => false,
+                    ],
+                    [
+                        "name" => "faqs",
+                        "type" => "array",
+                        "fields" => [
+                            [
+                                "name" => "text",
+                                "type" => "textarea",
+                                "label" => "Texto",
+                                "required" => true,
+                            ],
+                        ]
+                    ]
+                ],
             ]
         ];
 
