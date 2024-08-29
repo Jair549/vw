@@ -7,17 +7,18 @@
 
     <link rel="icon" href="storage/{{ $headerFields['files']['path'] ?? '' }}" type="image/x-icon">
 
-    <meta property="og:title" content="Vilavolks">
+    <meta property="og:title" content="{{ $headerFields['title'] ?? 'Vilavolks' }}">
     <meta property="og:description" content="O carro que você sempre sonhou, com parcelas que você nunca imaginou.">
     <meta property="og:image" content="{{ $logo ?? '' }}">
     <meta property="og:url" content="{{ env('APP_URL') }}">
     <meta property="og:type" content="website">
-    
-    @foreach($headerFields['fields'] as $key => $value)
-        @if($key != 'files')
-            <meta name="{{ $value['name'] }}" content="{{ $value['content'] }}">
-        @endif
-    @endforeach
+    @if(!empty($headerFields['fields']))
+        @foreach($headerFields['fields'] as $key => $value)
+            @if($key != 'files')
+                <meta name="{{ $value['name'] }}" content="{{ $value['content'] }}">
+            @endif
+        @endforeach
+    @endif
 
     <title>{{ $headerFields['title'] ?? 'Vilavolks' }}</title>
 
