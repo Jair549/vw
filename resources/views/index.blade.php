@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
 
     @foreach($sections as $section)
         @if(isset($section->contents[0]->main_content))

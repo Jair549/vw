@@ -469,13 +469,19 @@ class InitialSeeder extends Seeder
                     [
                         "name" => "sac",
                         "type" => "text",
-                        "label" => "SAC",
+                        "label" => "Número SAC",
                         "required" => true,
                     ],
                     [
-                        "name" => "email",
+                        "name" => "sac_2",
+                        "type" => "text",
+                        "label" => "Número SAC 2",
+                        "required" => false,
+                    ],
+                    [
+                        "name" => "relacionamento_email",
                         "type" => "email",
-                        "label" => "E-mail",
+                        "label" => "E-mail Relacionamento",
                         "required" => true,
                     ],
                     [
@@ -488,6 +494,18 @@ class InitialSeeder extends Seeder
                         "name" => "ouvidoria",
                         "type" => "text",
                         "label" => "Telefone Ouvidoria",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "ouvidoria_2",
+                        "type" => "text",
+                        "label" => "Telefone Ouvidoria 2",
+                        "required" => true,
+                    ],
+                    [
+                        "name" => "email",
+                        "type" => "email",
+                        "label" => "E-mail",
                         "required" => true,
                     ],
                     [
@@ -521,6 +539,36 @@ class InitialSeeder extends Seeder
                         ]
                     ]
                 ],
+                "code_main_content" => '
+                    <footer class="footer-page">
+                        <div class="logo-footer">
+                            <a href="#">
+                                <img src="{{image}}" alt="">
+                            </a>
+                        </div>
+                        <div class="description-footer">
+                            <p>SAC: <a href="tel:{{sac}}">{{sac}}</a> | <a href="tel:{{sac_2}}">{{sac_2}}</a> - <a href="mailto:{{relacionamento_email}}">{{relacionamento_email}}</a> | Deficiente auditivo/fala: <a href="tel:{{telefone_deficiente}}">{{telefone_deficiente}}</a></p>
+                            <p>Ouvidoria¹: <a href="tel:{{ouvidoria}}">{{ouvidoria}}</a> e <a href="tel:{{ouvidoria_2}}">{{ouvidoria_2}}</a> - <a href="mailto:{{email}}">{{email}}</a> | {{text}}</p>
+                            <span class="copy">© {{text_copy}}</span>
+                        </div>
+                        <div class="box-info-footer">
+                            {{fields}}
+                        </div>
+                    </footer>
+                ',
+                "code_content_fields" => '<p>{{text}}</p>',
+            ],
+            [
+                "name" => "CRM",
+                "columns" => [
+                    [
+                        "name" => "script",
+                        "type" => "text",
+                        "label" => "Script",
+                        "required" => true,
+                    ],
+                ],
+                "code_main_content" => '{{script}}',
             ]
         ];
 
