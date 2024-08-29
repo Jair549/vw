@@ -32,7 +32,6 @@ class SectionController extends Controller
 
         $sectionHeader = $sections->where('name', 'Configurações e SEO')->first();
         $headerFields = json_decode($sectionHeader->fields, true);
-        // dd($headerFields);
         
         return view('index', compact('sections', 'logo', 'headerFields'));
     }

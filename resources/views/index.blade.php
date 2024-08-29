@@ -12,7 +12,12 @@
     <meta property="og:image" content="{{ $logo ?? '' }}">
     <meta property="og:url" content="{{ env('APP_URL') }}">
     <meta property="og:type" content="website">
-
+    
+    @foreach($headerFields['fields'] as $key => $value)
+        @if($key != 'files')
+            <meta name="{{ $value['name'] }}" content="{{ $value['content'] }}">
+        @endif
+    @endforeach
 
     <title>{{ $headerFields['title'] ?? 'Vilavolks' }}</title>
 
