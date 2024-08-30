@@ -36,6 +36,27 @@ class SectionController extends Controller
         return view('index', compact('sections', 'logo', 'headerFields'));
     }
 
+    public function logo()
+    {
+        $section = Section::where('slug', 'logo')->first();
+        $sections = Section::all();
+        $update = false;
+
+        // Decodificar as colunas do JSON
+        $columns = json_decode($section->columns, true);
+
+        // Filtrar as colunas onde a chave 'fields' não está presente
+        $mainColumns = array_filter($columns, function($column) {
+            return !isset($column['fields']);
+        });
+
+        $fieldsColumns = array_filter($columns, function($column) {
+            return isset($column['fields']);
+        });
+
+        return view('panel.sections.index', compact('section', 'sections', 'update', 'mainColumns', 'fieldsColumns'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

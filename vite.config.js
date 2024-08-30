@@ -5,15 +5,10 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/scss/app.scss',
-                'resources/scss/panel.scss',
+                'resources/sass/app.scss',
                 'resources/js/app.js',
-                'resources/js/panel/functions.js',
             ],
             refresh: true,
         }),
     ],
-    optimizeDeps: {
-        exclude: ['bootstrap'],
-    },
 });
