@@ -77,7 +77,7 @@
                         <div class="form-group">
                             <label for="{{ $field['name'] }}">{{ $field['label'] }}</label>
                             <textarea class="form-control" name="{{ $field['name'] }}" id="{{ $field['name'] }}" {{ isset($field['required']) && $update ? 'required' : '' }}>
-                                {{ old($field['name'], $update ? $fields['fields'][$field['name']] : '') }}
+                                {{ $update ? $currentField[$field['name']] : '' }}
                             </textarea>
                         </div>
                     @endif
