@@ -75,22 +75,17 @@
                     <label for="{{ $column['name'] }}">{{ $option->label }}</label>
                 @endforeach
             </div>
-        @elseif($column['type'] == 'text')
+        @elseif($column['type'] == 'text' || $column['type'] == 'email' || $column['type'] == 'url' || $column['type'] == 'number' || $column['type'] == 'password')
             
             <div class="form-group">
                 <label for="{{ $column['name'] }}">{{ $column['label'] }}</label>
                 <input class="form-control" type="{{ $column['type']}}" name="{{ $column['name'] }}" id="{{ $column['name'] }}" value="{{ old($column['name'], isset($fields[$column['name']]) ? $fields[$column['name']] : '') }}" {{ isset($column['required']) && $update ? 'required' : '' }}>
-            </div>
-        @elseif($column['type'] == 'url')
-            <div class="form-group
-                <label for="{{ $column['name'] }}">{{ $column['label'] }}</label>
-                <input class="form-control" type="{{ $column['type']}}" name="{{ $column['name'] }}" id="{{ $column['name'] }}" value="{{ old($column['name'], isset($fields[$column['name']]) ? $fields[$column['name']] : '') }}" {{ isset($column['required']) && $update ? 'required' : '' }}>
-            </div>     
+            </div>   
 
         @else
             <div class="form-group">
                 <label for="{{ $column['name'] }}">{{ $column['label'] }}</label>
-                <textarea class="form-control" name="{{ $column['name'] }}" id="{{ $column['name'] }}" {{ isset($column['required']) && $update ? 'required' : '' }}></textarea>
+                <textarea class="form-control" name="{{ $column['name'] }}" id="{{ $column['name'] }}" {{ isset($column['required']) && $update ? 'required' : '' }}>{{ isset($fields[$column['name']]) ? $fields[$column['name']] : '' }}</textarea>
             </div>
         @endif
 

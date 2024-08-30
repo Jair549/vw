@@ -68,12 +68,7 @@
                                 <label for="{{ $field['name'] }}">{{ $option->label }}</label>
                             @endforeach
                         </div>
-                    @elseif($field['type'] == 'text')
-                        <div class="form-group
-                            <label for="{{ $field['name'] }}">{{ $field['label'] }}</label>
-                            <input class="form-control" type="{{ $field['type']}}" name="{{ $field['name'] }}" id="{{ $field['name'] }}" value="{{ old($field['name'], $update ? $currentField[$field['name']] : '') }}" {{ isset($field['required']) && $update ? 'required' : '' }}>
-                        </div>
-                    @elseif($field['type'] == 'url')
+                    @elseif($field['type'] == 'text' || $field['type'] == 'email' || $field['type'] == 'url' || $field['type'] == 'number' || $field['type'] == 'password')
                         <div class="form-group
                             <label for="{{ $field['name'] }}">{{ $field['label'] }}</label>
                             <input class="form-control" type="{{ $field['type']}}" name="{{ $field['name'] }}" id="{{ $field['name'] }}" value="{{ old($field['name'], $update ? $currentField[$field['name']] : '') }}" {{ isset($field['required']) && $update ? 'required' : '' }}>

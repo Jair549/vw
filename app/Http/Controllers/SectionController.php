@@ -72,8 +72,8 @@ class SectionController extends Controller
                 'id' => uniqid(),
                 'path' => $path,
             ];
-        }else if( $fields && isset($fields['files'])){
-            $request['files'] = $fields['files'];
+        // }else if( $fields && isset($fields['files'])){
+        //     $request['files'] = $fields['files'];
         }
 
         unset($request['image']);
@@ -84,6 +84,11 @@ class SectionController extends Controller
 
         // Verificar se é pra atualizar os campos exceto fields
         if($isMain){
+
+            if( $fields && isset($fields['files'])){
+                $request['files'] = $fields['files'];
+            }
+
             $payload = $request->all();
             $payload['fields'] = isset($fields['fields']) ? $fields['fields'] : [];
         }else{
