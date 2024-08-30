@@ -407,6 +407,7 @@ class InitialSeeder extends Seeder
                     [
                         "name" => "faqs",
                         "type" => "array",
+                        "is_accordion" => true,
                         "fields" => [
                             [
                                 "name" => "question",
@@ -443,11 +444,11 @@ class InitialSeeder extends Seeder
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                data-bs-target="#{{collapseId}}" aria-expanded="true" aria-controls="{{collapseId}}">
                                 {{question}}
                             </button>
                         </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show"
+                        <div id="{{collapseId}}" class="accordion-collapse collapse show"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <p>{{answer}}</p>

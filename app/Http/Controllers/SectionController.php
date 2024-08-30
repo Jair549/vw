@@ -367,7 +367,7 @@ class SectionController extends Controller
             }else if($key == 'fields'){
                 
                 // $fieldsContent = '';//Vamos criar a função para montar o conteúdo dos fields
-                $fieldsContent = $this->addFieldsContent($dataFields, $codeContentFields);
+                $fieldsContent = $this->addFieldsContent($dataFields, $codeContentFields, $fields->is_accordion);
                 $codeMainContent = str_replace("{{fields}}", $fieldsContent, $codeMainContent);
             } else {
                 // Verificar e substituir *palavra* por <b>palavra</b>
@@ -393,7 +393,7 @@ class SectionController extends Controller
         \App\Models\SectionContent::updateOrCreate(["section_id" => $section->id], $contentPayload);
     }
 
-    private function addFieldsContent($dataFields, $codeContentFields)
+    private function addFieldsContent($dataFields, $codeContentFields, $isAccordion)
     {
         $fieldsContent = '';
         foreach ($dataFields as $field) {
@@ -405,6 +405,10 @@ class SectionController extends Controller
                     // Verificar e substituir *palavra* por <b>palavra</b>
                     $value = preg_replace('/\*(.*?)\*/', '<b>$1</b>', $value);
                     $fieldContent = str_replace("{{{$key}}}", $value, $fieldContent);
+                }
+
+                if($isAccordion){
+                    $fieldContent = str_replace("{{collapseId}}", 'collapse-' . $key,  $fieldContent);
                 }
             }
             $fieldsContent .= $fieldContent;
