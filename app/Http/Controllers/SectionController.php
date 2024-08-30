@@ -31,7 +31,7 @@ class SectionController extends Controller
         $logo = $logoFields ? 'storage/' . $logoFields['files']['path'] : null;
 
         $sectionHeader = $sections->where('name', 'Configurações e SEO')->first();
-        $headerFields = $sectionHeader->fields ? json_decode($sectionHeader->fields, true) : null;
+        $headerFields = $sectionHeader && $sectionHeader->fields ? json_decode($sectionHeader->fields, true) : null;
         
         return view('index', compact('sections', 'logo', 'headerFields'));
     }
