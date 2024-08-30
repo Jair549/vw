@@ -27,7 +27,7 @@ class SectionController extends Controller
     {
         $sections = Section::with('contents')->get();
         $sectionLogo = $sections->where('slug', 'logo')->first();
-        $logoFields = json_decode($sectionLogo->fields, true);
+        $logoFields = $sectionLogo ? json_decode($sectionLogo->fields, true) : null;
         $logo = $logoFields ? 'storage/' . $logoFields['files']['path'] : null;
 
         $sectionHeader = $sections->where('name', 'Configurações e SEO')->first();
