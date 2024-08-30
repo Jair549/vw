@@ -354,6 +354,15 @@ class SectionController extends Controller
         $fields = json_decode($section->fields);
         $dataFields = $fields->fields;
         
+        $columns = json_decode($section->columns, true);
+        $isAccordion = false;
+        foreach ($columns as $column) {
+            if (isset($column['fields']) && isset($column['is_accordion']) && $column['is_accordion']) {
+                $isAccordion = true;
+                break;
+            }
+        }
+
         $codeMainContent = $section->contents[0]->code_main_content;
         $codeContentFields = $section->contents[0]->code_content_fields;
         
@@ -367,7 +376,7 @@ class SectionController extends Controller
             }else if($key == 'fields'){
                 
                 // $fieldsContent = '';//Vamos criar a função para montar o conteúdo dos fields
-                $fieldsContent = $this->addFieldsContent($dataFields, $codeContentFields, $fields->is_accordion);
+                $fieldsContent = $this->addFieldsContent($dataFields, $codeContentFields, $isAccordion);
                 $codeMainContent = str_replace("{{fields}}", $fieldsContent, $codeMainContent);
             } else {
                 // Verificar e substituir *palavra* por <b>palavra</b>
@@ -396,6 +405,7 @@ class SectionController extends Controller
     private function addFieldsContent($dataFields, $codeContentFields, $isAccordion)
     {
         $fieldsContent = '';
+        $countAccordion = 0;
         foreach ($dataFields as $field) {
             $fieldContent = $codeContentFields;
             foreach ($field as $key => $value) {
@@ -408,8 +418,12 @@ class SectionController extends Controller
                 }
 
                 if($isAccordion){
-                    $fieldContent = str_replace("{{collapseId}}", 'collapse-' . $key,  $fieldContent);
+                    $fieldContent = str_replace("{{collapseId}}", 'collapse-' . $countAccordion,  $fieldContent);
+                    $classess = $countAccordion <= 0 ? 'accordion-collapse collapse show' : 'accordion-collapse collapse';
+                    $fieldContent = str_replace("{{classes}}", $classess,  $fieldContent);
                 }
+
+                $countAccordion++;
             }
             $fieldsContent .= $fieldContent;
         }

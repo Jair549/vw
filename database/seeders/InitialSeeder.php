@@ -448,7 +448,7 @@ class InitialSeeder extends Seeder
                                 {{question}}
                             </button>
                         </h2>
-                        <div id="{{collapseId}}" class="accordion-collapse collapse show"
+                        <div id="{{collapseId}}" class="{{classes}}"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <p>{{answer}}</p>
