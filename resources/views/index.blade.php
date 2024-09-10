@@ -24,13 +24,18 @@
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 
-    {!! $headerFields['scripts'] ?? '' !!}
+    
 
 </head>
 
 <body>
     
     @foreach($sections as $section)
+    
+        @if($section->slug == 'footer')
+            {!! $headerFields['scripts'] ?? '' !!}
+        @endif
+
         @if(isset($section->contents[0]->main_content))
             {!! $section->contents[0]->main_content !!}
         @endif
