@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 echo 'Iniciando a criação do link simbólico...<br>';
 
 // Define os caminhos para o link simbólico
-$target = realpath(__DIR__ . '/../vilavolks/storage/app/public');
+$target = realpath(__DIR__ . '/../storage/app/public');
 $link = __DIR__ . '/storage';
 
 // Verifica se o diretório de destino existe
