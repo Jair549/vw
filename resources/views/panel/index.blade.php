@@ -43,15 +43,9 @@
                     <div class="user-menu">
                         <div class="dropdown dropleft">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                C
+                                {{ mb_strtoupper(mb_substr(auth()->user()->name, 0, 1)) }}
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item logoff" href="#">
-                                    <span>Perfil</span>
-                                </a>
-                                <a class="dropdown-item logoff" href="#">
-                                    <span>Ir para o Quizz</span>
-                                </a>
                                 <a class="dropdown-item logoff" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power">
                                         <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>

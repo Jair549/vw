@@ -14,7 +14,7 @@
                 <div class="col-md-8 col-lg-6 col-xl-5">
                     <div class="headerLoginAdmin">
                         <a href="#">
-                            <img src="{{ asset('img/logoEmbraVW.svg') }}" alt="">
+                            <img src="{{ asset('img/Logotipo-04.png') }}" alt="Logo Vilavolks">
                         </a>
                         <span class="subLogoDescription">Login Paniel Administrativo</span>
                     </div>
