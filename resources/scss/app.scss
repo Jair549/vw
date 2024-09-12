@@ -907,8 +907,9 @@ a{
     position: relative;
     padding-top: 3rem;
     min-height: 100vh;
-    background: #fff;
+    background: #eee;
     z-index: 0;
+    padding-bottom: 53.05px;
 
     .headerLogin{
         position: absolute;
@@ -927,7 +928,7 @@ a{
             left: 0;
             right: 0;
             svg{
-                fill: #fff;
+                fill: #eee;
             }
         }
     }
@@ -998,6 +999,51 @@ a{
                     left: 9px;
                 }
             }
+
+            .btn-link{
+                text-decoration: none!important;
+                color: #878a99;
+                float: right;
+
+                &:hover{
+                    color: #004666;
+                }
+            }
+
+            .form-control{
+                &:focus{
+                    box-shadow: none!important;
+                    outline: none!important;
+                    background: transparent!important;
+                }
+                &:-internal-autofill-selected{
+                    -webkit-box-shadow: 0 0 0px 1000px #f8fafc inset !important;
+                    box-shadow: 0 0 0px 1000px #f8fafc inset !important;
+                    color: #000 !important;
+                    background: #f8fafc!important;
+                }
+            }
+
+            .btn-primary{
+                background: #0082a0;
+                width: 100%;
+                border-radius: 5px;
+                border: none;
+
+                &:hover{
+                    background: #004666;
+                }
+            }
         }
+    }
+
+    .footerLogin{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        padding: 15px;
+        text-align: center;
+        color: #878a99;
     }
 }

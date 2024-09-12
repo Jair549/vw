@@ -65,19 +65,17 @@
                                     </div>
                                     <div class="col-md-6">
                                         @if (Route::has('password.request'))
-                                            <a class="btn btn-link text-right p-0" href="{{ route('password.request') }}">
-                                                {{ __('Forgot Your Password?') }}
+                                            <a class="btn btn-link p-0" href="{{ route('password.request') }}">
+                                                {{ __('Esqueceu a senha?') }}
                                             </a>
                                         @endif
                                     </div>
                                 </div>
 
-                                <div class="row mb-0">
-                                    <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Login') }}
-                                        </button>
-                                    </div>
+                                <div class="mb-0">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Entrar') }}
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -85,6 +83,6 @@
                 </div>
             </div>
         </div>
-        <div class="footerLogin"></div>
+        <div class="footerLogin">© Volkswagen Financial Services 2024</div>
     </div>
 @endsection
