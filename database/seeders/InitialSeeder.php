@@ -22,6 +22,18 @@ class InitialSeeder extends Seeder
                         "type" => "file",
                         "label" => "Logo",
                         "required" => true,
+                    ],
+                    [
+                        "name" => "is_active",
+                        "type" => "checkbox",
+                        "label" => "Ativo",
+                        "required" => true,
+                        "options" => [
+                            [
+                                "label" => "Ativo",
+                                "value" => "1"
+                            ],
+                        ]
                     ]
                 ],
                 "code_main_content" => '
@@ -77,6 +89,18 @@ class InitialSeeder extends Seeder
                         "label" => "Link do botão",
                         "required" => true,
                     ],
+                    [
+                        "name" => "is_active",
+                        "type" => "checkbox",
+                        "label" => "Ativo",
+                        "required" => true,
+                        "options" => [
+                            [
+                                "label" => "Ativo",
+                                "value" => "1"
+                            ],
+                        ]
+                    ]
                 ],
                 "code_main_content" => '
                     <header class="header-page">
@@ -153,6 +177,18 @@ class InitialSeeder extends Seeder
                             ],
 
                         ]
+                    ],
+                    [
+                        "name" => "is_active",
+                        "type" => "checkbox",
+                        "label" => "Ativo",
+                        "required" => true,
+                        "options" => [
+                            [
+                                "label" => "Ativo",
+                                "value" => "1"
+                            ],
+                        ]
                     ]
                 ],
                 "code_main_content" => '
@@ -214,6 +250,18 @@ class InitialSeeder extends Seeder
                                 "label" => "Imagem",
                             ]
                         ]
+                    ],                    
+                    [
+                        "name" => "is_active",
+                        "type" => "checkbox",
+                        "label" => "Ativo",
+                        "required" => true,
+                        "options" => [
+                            [
+                                "label" => "Ativo",
+                                "value" => "1"
+                            ],
+                        ]
                     ]
                 ],
                 "code_main_content" => '
@@ -273,6 +321,18 @@ class InitialSeeder extends Seeder
                                 "label" => "Texto",
                                 "required" => true,
                             ]
+                        ]
+                    ],
+                    [
+                        "name" => "is_active",
+                        "type" => "checkbox",
+                        "label" => "Ativo",
+                        "required" => true,
+                        "options" => [
+                            [
+                                "label" => "Ativo",
+                                "value" => "1"
+                            ],
                         ]
                     ]
                 ],
@@ -345,6 +405,18 @@ class InitialSeeder extends Seeder
                             ]
                         ]
                     ],
+                    [
+                        "name" => "is_active",
+                        "type" => "checkbox",
+                        "label" => "Ativo",
+                        "required" => true,
+                        "options" => [
+                            [
+                                "label" => "Ativo",
+                                "value" => "1"
+                            ],
+                        ]
+                    ]
                 ],
             ],
             [
@@ -374,6 +446,18 @@ class InitialSeeder extends Seeder
                         "label" => "Link do botão",
                         "required" => true,
                     ],
+                    [
+                        "name" => "is_active",
+                        "type" => "checkbox",
+                        "label" => "Ativo",
+                        "required" => true,
+                        "options" => [
+                            [
+                                "label" => "Ativo",
+                                "value" => "1"
+                            ],
+                        ]
+                    ]
                 ],
                 "code_main_content" => '
                     <section class="callAction">
@@ -420,6 +504,18 @@ class InitialSeeder extends Seeder
                                 "type" => "text",
                                 "label" => "Resposta",
                                 "required" => true,
+                            ],
+                        ]
+                    ],
+                    [
+                        "name" => "is_active",
+                        "type" => "checkbox",
+                        "label" => "Ativo",
+                        "required" => true,
+                        "options" => [
+                            [
+                                "label" => "Ativo",
+                                "value" => "1"
                             ],
                         ]
                     ]
@@ -538,6 +634,18 @@ class InitialSeeder extends Seeder
                                 "required" => true,
                             ],
                         ]
+                    ],
+                    [
+                        "name" => "is_active",
+                        "type" => "checkbox",
+                        "label" => "Ativo",
+                        "required" => true,
+                        "options" => [
+                            [
+                                "label" => "Ativo",
+                                "value" => "1"
+                            ],
+                        ]
                     ]
                 ],
                 "code_main_content" => '
@@ -597,6 +705,18 @@ class InitialSeeder extends Seeder
                                 "type" => "text",
                                 "label" => "Conteúdo",
                                 "required" => true,
+                            ],
+                        ]
+                    ],
+                    [
+                        "name" => "is_active",
+                        "type" => "checkbox",
+                        "label" => "Ativo",
+                        "required" => true,
+                        "options" => [
+                            [
+                                "label" => "Ativo",
+                                "value" => "1"
                             ],
                         ]
                     ]

@@ -112,6 +112,8 @@ class SectionController extends Controller
 
             $payload = $request->all();
             $payload['fields'] = isset($fields['fields']) ? $fields['fields'] : [];
+            $payload['is_active'] = isset($payload['is_active']) ? 1 : 0;
+            $section->is_active = $payload['is_active'];
         }else{
             $payload = $fields;
             $request['id'] = uniqid();
@@ -211,6 +213,8 @@ class SectionController extends Controller
         if($isMain){
             $payload = $request->all();
             $payload['fields'] = isset($fields['fields']) ? $fields['fields'] : [];
+            $payload['is_active'] = isset($payload['is_active']) ? 1 : 0;
+            $section->is_active = $payload['is_active'];
         }else{
             $payload = $fields;
             // Encontrar o field com base no fieldId e substituir os dados
@@ -348,7 +352,7 @@ class SectionController extends Controller
 
     private function addMainContent($section)
     {
-        
+        xdebug_break();
         $section->load('contents');
         // Ignorar os fields dentro de section->fields
         $fields = json_decode($section->fields);

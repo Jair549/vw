@@ -31,13 +31,15 @@
 <body>
     
     @foreach($sections as $section)
-    
-        @if($section->slug == 'footer')
-            {!! $headerFields['scripts'] ?? '' !!}
-        @endif
+        @if($section->is_active == 1)
+        
+            @if($section->slug == 'footer')
+                {!! $headerFields['scripts'] ?? '' !!}
+            @endif
 
-        @if(isset($section->contents[0]->main_content))
-            {!! $section->contents[0]->main_content !!}
+            @if(isset($section->contents[0]->main_content))
+                {!! $section->contents[0]->main_content !!}
+            @endif
         @endif
     @endforeach
 

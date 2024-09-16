@@ -17,7 +17,7 @@
     @endif
     
     @foreach($columns as $column)
-    
+        
         @if($column['type'] == 'array')
             
             @continue
@@ -58,12 +58,10 @@
                 </select>
             </div>
         @elseif($column['type'] == 'checkbox')
-        
-            <div class="form-group">
-                <label for="{{ $column['name'] }}">{{ $column['label'] }}</label>
+            <div class="form-check form-switch">
                 @foreach($column['options'] as $option)
-                    <input class="form-control" type="checkbox" name="{{ $column['name'] }}" id="{{ $column['name'] }}" value="{{ $option->value }}" {{ isset($column['required']) && $update ? 'required' : '' }}>
-                    <label for="{{ $column['name'] }}">{{ $option->label }}</label>
+                <input class="form-check-input" type="checkbox" role="switch" name="{{ $column['name'] }}" id="{{ $column['name'] }}" value="{{ $option['value'] }}" {{ isset($fields['is_active']) && $fields['is_active'] == 1 || !isset($fields['is_active']) ? 'checked' : '' }}>
+                <label class="form-check-label" for="{{ $column['name'] }}">{{ $column['label'] }}</label>
                 @endforeach
             </div>
         @elseif($column['type'] == 'radio')
