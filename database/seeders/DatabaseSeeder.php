@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $this->call(InitialSeeder::class);
 
-        User::factory()->create([
+        User::factory()->firstOrCreate([
             'name' => 'Admin',
             'email' => 'd.montinni@vilavolks.com',
         ]);
