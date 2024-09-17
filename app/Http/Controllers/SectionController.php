@@ -352,7 +352,6 @@ class SectionController extends Controller
 
     private function addMainContent($section)
     {
-        xdebug_break();
         $section->load('contents');
         // Ignorar os fields dentro de section->fields
         $fields = json_decode($section->fields);
