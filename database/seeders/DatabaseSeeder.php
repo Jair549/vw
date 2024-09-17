@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
 
         User::firstOrCreate(
             ['email' => 'd.montinni@vilavolks.com'],
-            ['name' => 'Admin']
+            ['name' => 'Admin',
+            'password' => bcrypt('password')]
         );
     }
 }
