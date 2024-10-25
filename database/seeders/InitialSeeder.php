@@ -570,58 +570,10 @@ class InitialSeeder extends Seeder
                         "required" => true,
                     ],
                     [
-                        "name" => "sac_2",
-                        "type" => "text",
-                        "label" => "Número SAC 2",
-                        "required" => false,
-                    ],
-                    [
                         "name" => "relacionamento_email",
                         "type" => "email",
                         "label" => "E-mail Relacionamento",
                         "required" => true,
-                    ],
-                    [
-                        "name" => "telefone_deficiente",
-                        "type" => "text",
-                        "label" => "Deficiente auditivo/fala",
-                        "required" => true,
-                    ],
-                    [
-                        "name" => "ouvidoria",
-                        "type" => "text",
-                        "label" => "Telefone Ouvidoria",
-                        "required" => true,
-                    ],
-                    [
-                        "name" => "ouvidoria_2",
-                        "type" => "text",
-                        "label" => "Telefone Ouvidoria 2",
-                        "required" => true,
-                    ],
-                    [
-                        "name" => "email",
-                        "type" => "email",
-                        "label" => "E-mail",
-                        "required" => true,
-                    ],
-                    [
-                        "name" => "site",
-                        "type" => "url",
-                        "label" => "Url do site",
-                        "required" => false,
-                    ],
-                    [
-                        "name" => "text",
-                        "type" => "text",
-                        "label" => "Texto",
-                        "required" => true,
-                    ],
-                    [
-                        "name" => "text_copy",
-                        "type" => "text",
-                        "label" => "Texto do copy",
-                        "required" => false,
                     ],
                     [
                         "name" => "faqs",
@@ -656,16 +608,10 @@ class InitialSeeder extends Seeder
                             </a>
                         </div>
                         <div class="description-footer">
-                            <p>SAC: <a href="tel:{{sac}}">{{sac}}</a> | <a href="tel:{{sac_2}}">{{sac_2}}</a> - <a href="mailto:{{relacionamento_email}}">{{relacionamento_email}}</a> | Deficiente auditivo/fala: <a href="tel:{{telefone_deficiente}}">{{telefone_deficiente}}</a></p>
-                            <p>Ouvidoria¹: <a href="tel:{{ouvidoria}}">{{ouvidoria}}</a> e <a href="tel:{{ouvidoria_2}}">{{ouvidoria_2}}</a> - <a href="mailto:{{email}}">{{email}}</a> | {{text}}</p>
-                            <span class="copy">© {{text_copy}}</span>
-                        </div>
-                        <div class="box-info-footer">
-                            {{fields}}
+                            <p>SAC: <a href="tel:{{sac}}">{{sac}}</a> - <a href="mailto:{{relacionamento_email}}">{{relacionamento_email}}</a></p>
                         </div>
                     </footer>
                 ',
-                "code_content_fields" => '<p>{{text}}</p>',
             ],
             //Informações do head como meta para SEO e scripts como google analytcs e etc
             [

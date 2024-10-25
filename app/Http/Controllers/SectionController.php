@@ -25,6 +25,7 @@ class SectionController extends Controller
      */
     public function index()
     {
+        xdebug_break();
         $sections = Section::with('contents')->get();
         $sectionLogo = $sections->where('slug', 'logo')->first();
         $logoFields = $sectionLogo ? json_decode($sectionLogo->fields, true) : null;
